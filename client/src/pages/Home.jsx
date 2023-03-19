@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/navbar";
 import Card from "../components/Card/card";
-import wave1 from "../assets/bg.jpg";
+import wave1 from "../assets/bg.svg";
 import "../components/Card/style.css";
 import cardbg from "../assets/cardbg.jpg";
 import InfoCard from "../components/InfoCard";
@@ -35,7 +35,7 @@ export default function Home() {
           <div className="w-1/2">
             <div className="hometext p-2 text-white text-5xl w-full font-bold">
               <p>
-                ETWOT is a one stop interface connecting clients and technical
+                WorkWave is a one stop interface connecting clients and technical
                 experts of every field. <br /> Revolutionise the digital reach
                 of your business with our experts.
               </p>
@@ -44,7 +44,7 @@ export default function Home() {
           <Card
             title="Expertise"
             img={cardbg}
-            body="ETWOT has carefully vetted and picked technical experts from all around the globe."
+            body="WorkWave has carefully vetted and picked technical experts from all around the globe."
             mouseEnter={img1}
             mouseLeave={originalImg}
           />

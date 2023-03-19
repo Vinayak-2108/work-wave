@@ -11,7 +11,7 @@
   font-weight: normal;
   color: #444;
   text-align: center;
-  margin: 2rem 0;
+  /* margin: 2rem 0; */
 }
 
 .wrapper {
@@ -59,8 +59,8 @@
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   text-align: center;
-  min-height: 500px;
-  height: auto;
+  min-height: 22rem;
+  /* height: auto; */
   border-radius: 10px;
   color: #fff;
   font-size: 1.5rem;

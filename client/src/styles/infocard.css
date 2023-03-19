@@ -14,7 +14,9 @@
 .left {
   width: 50%;
   height: 500px;
-  background: url(../assets/logo.jpeg);
+  background: url(../assets/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 8px;
   box-shadow: -10px -10px 8px rgb(69, 69, 69);
 }

@@ -20,7 +20,7 @@ module.exports = {
 
     extend: {
       backgroundImage: {
-        "hero-image": 'url("./components/assets/bg.png")',
+        "hero-image": 'url("./components/assets/bg.svg")',
         "alt-image": 'url("./components/assets/earth.jpg")',
       },
     },

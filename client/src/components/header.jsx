@@ -2,118 +2,131 @@ import MenuOutlined from "@mui/icons-material/Menu";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import logopic from "../assets/logo.jpeg";
+import logopic from "../assets/logo.png";
 import MenuItems from "./MenuItems";
-
+import "../styles/navbar.css";
 const Header = () => {
-  const [active, setActive] = useState(false);
-  const [navbar, setNavbar] = useState(false);
+    const [active, setActive] = useState(true);
+    const [navbar, setNavbar] = useState(false);
 
-  const navigate = useNavigate();
+    // navToggle.addEventListener("click", () => {
 
-  const showMenu = () => {
-    setActive(!active);
-  };
-  const changeBackground = () => {
-    if (window.scrollY >= 80) {
-      setNavbar(true);
-    } else setNavbar(false);
-  };
-  window.addEventListener("scroll", changeBackground);
-  return (
-    <div
-      className={`fixed w-full text-white flex justify-between p-4 items-center z-10 ${
-        navbar ? "navbar-active" : "bg-transparent"
-      }`}
-    >
-      <div className="md:flex-[0.5] flex-initial justify-center items-center">
-        <img src={logopic} alt="logo" className="w-16 cursor-pointer" />
-      </div>
+    // });
+    const handleToggle = () => {
+      setActive(!active);
+    };
 
-      <nav>
-        <div className="absolute right-6 md:hidden top-6 scale-150">
-          <MenuOutlined
-            onClick={showMenu}
-            className="scale-150 cursor-pointer"
-          />
-        </div>
+    const navigate = useNavigate();
 
-        <ul className="hidden text-xl md:flex gap-8 p-6 uppercase bg-transparent">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/services">Services</Link>
-          </li>
-          <li>
-            <Link to="/privacy">Terms</Link>
-          </li>
-          {localStorage.getItem("user_token") ||
-          localStorage.getItem("admin_token") ? (
-            localStorage.getItem("user_token") ? (
-              <>
-                <li>
-                  <button
-                    className="uppercase"
-                    onClick={() => {
-                      navigate("/userdashboard");
-                    }}
-                  >
-                    Dashboard
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="uppercase"
-                    onClick={() => {
-                      localStorage.removeItem("user_token");
-                      navigate("/");
-                      window.location.reload();
-                    }}
-                  >
-                    Logout
-                  </button>
-                </li>
-              </>
-            ) : (
-              <>
-                <li>
-                  <button
-                    className="uppercase"
-                    onClick={() => {
-                      navigate("/admindashboard");
-                    }}
-                  >
-                    Dashboard
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="uppercase"
-                    onClick={() => {
-                      localStorage.removeItem("admin_token");
-                      navigate("/");
-                      window.location.reload();
-                    }}
-                  >
-                    Logout
-                  </button>
-                </li>
-              </>
-            )
-          ) : (
-            <li>
-              <Link to="/signup">Signup</Link>
-            </li>
-          )}
-        </ul>
-        <MenuItems showMenu={showMenu} active={active} />
-      </nav>
-    </div>
-  );
+    // const changeBackground = () => {
+    //     if (window.scrollY >= 80) {
+    //         setNavbar(true);
+    //     } else setNavbar(false);
+    // };
+    // window.addEventListener("scroll", changeBackground);
+
+    return (
+        <header>
+            <div class="container row">
+                <button
+                    onClick={handleToggle}
+                    class="nav-toggle"
+                    aria-label="open navigation"
+                >
+                    <span class="hamburger"></span>
+                </button>
+                <a class="logo" href="#">
+                    <img src={logopic} />
+                </a>
+                <nav className={active ? "nav" : "nav--visible"}>
+                    <ul class="nav__list nav__list--primary">
+                        <li class="nav__item">
+                            <Link to="/" class="nav__link">
+                                Home
+                            </Link>
+                        </li>
+                        <li class="nav__item">
+                            <Link to="/about" class="nav__link">
+                                About
+                            </Link>
+                        </li>
+                        <li class="nav__item">
+                            <Link to="/services" class="nav__link">
+                                Services
+                            </Link>
+                        </li>
+                        <li class="nav__item">
+                            <Link to="/privacy" class="nav__link">
+                                Terms
+                            </Link>
+                        </li>
+                    {localStorage.getItem("user_token") ||
+                    localStorage.getItem("admin_token") ? (
+                        localStorage.getItem("user_token") ? (
+                            <>
+                                <li className="nav__item">
+                                    <button
+                                        className="uppercase nav__link"
+                                        onClick={() => {
+                                            navigate("/userdashboard");
+                                        }}
+                                    >
+                                        Dashboard
+                                    </button>
+                                </li>
+                                <li class="nav__item">
+                                    <button
+                                        className="uppercase nav__link"
+                                        onClick={() => {
+                                            localStorage.removeItem(
+                                                "user_token"
+                                            );
+                                            navigate("/");
+                                            window.location.reload();
+                                        }}
+                                    >
+                                        Logout
+                                    </button>
+                                </li>
+                            </>
+                        ) : (
+                            <>
+                                <li class="nav__item">
+                                    <button
+                                        className="uppercase"
+                                        onClick={() => {
+                                            navigate("/admindashboard");
+                                        }}
+                                    >
+                                        Dashboard
+                                    </button>
+                                </li>
+                                <li class="nav__item">
+                                    <button
+                                        className="uppercase"
+                                        onClick={() => {
+                                            localStorage.removeItem(
+                                                "admin_token"
+                                            );
+                                            navigate("/");
+                                            window.location.reload();
+                                        }}
+                                    >
+                                        Logout
+                                    </button>
+                                </li>
+                            </>
+                        )
+                    ) : (
+                        <li class="nav__item">
+                            <Link to="/signup" class="nav__link nav__link--button">Signup</Link>
+                        </li>
+                    )}
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    );
 };
 
 export default Header;

@@ -7,7 +7,7 @@ const Footer = () => {
       <div class="footer mt-auto">
         <div class="inner-footer">
           <div class="footer-items">
-            <h1>ETWOT</h1>
+            <h1>WorkWave</h1>
             <p>Description of any product or motto of the company.</p>
           </div>
 
@@ -75,7 +75,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div class="footer-bottom">Copyright &copy; ETWOT</div>
+        <div class="footer-bottom">Copyright &copy; WorkWave</div>
       </div>
     </>
   );

@@ -6,7 +6,7 @@ function Navbar({ showMenu, active }) {
   return (
     <div>
       <Header />
-      <ul
+      {/* <ul
         className={
           active
             ? "flex-col flex items-center fixed inset-0 left-1/4 uppercase bg-black/40 backdrop-blur-lg gap-8 justify-center p-8 md:hidden"
@@ -23,7 +23,7 @@ function Navbar({ showMenu, active }) {
         <li>
           <Link to="/">Login</Link>
         </li>
-      </ul>
+      </ul> */}
     </div>
   );
 }

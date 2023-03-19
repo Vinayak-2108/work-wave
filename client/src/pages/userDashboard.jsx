@@ -4,7 +4,7 @@ import Navbar from "../components/navbar";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import logo from "../assets/logo.jpeg"
+import logo from "../assets/logo.png"
 
 import {
   auth_user,
