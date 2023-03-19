@@ -11,7 +11,7 @@ export default function About() {
     <>
       <Navbar />
 
-      <div className="aboutbg h-screen p-16">
+      <div className="aboutbg p-16">
         {/* <img className="imgabout" src={about1} /> */}
         <div className="flex justify-center items-center flex-col title text-left pt-16 text-5xl font-semibold text-white">
           <h1 className="m-2 p-2 emph">About Us</h1>

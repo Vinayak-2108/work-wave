@@ -17,7 +17,7 @@ export default function Privacy() {
           <h2 className="m-5 p-5">CODE OF HONOR</h2>
           <div className="text-xl m-5 pl-5">
             These Terms of Use (the “Terms”) are a binding contract between you
-            and ETWOT(“ETWOT,” “we” and “us”). If you have any questions,
+            and WorkWave(“WorkWave,” “we” and “us”). If you have any questions,
             comments, or concerns regarding these terms or the Services, please
             contact us.
           </div>
@@ -51,7 +51,7 @@ export default function Privacy() {
           </p>
           <h2 className="m-5 p-5">USE OF SERVICES</h2>
           <p className="text-xl m-5 pl-5">
-            ETWOT only authorizes you to use the Services and Content for your
+            WorkWave only authorizes you to use the Services and Content for your
             own personal use in compliance with all applicable laws. You may not
             resell or make any commercial use of the Services or any Content
             therein (other than your own Submissions). Any Content you access

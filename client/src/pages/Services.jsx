@@ -16,11 +16,11 @@ export default function Services() {
   return (
     <div className="h-screen">
       <Navbar />
-      <div className="servicesbg p-16">
+      <div className="servicesbg p-16 bg-slate-100">
         {/* <img className="imgabout" src={about1} /> */}
-        <div className="title text-left pt-16 text-5xl font-semibold text-white">
+        <div className="title text-left text-3xl font-semibold text-white">
           <h1 className="m-2 p-2 emph">Our Services</h1>
-          <p className="text-3xl m-2 p-2">
+          <p className="text-xl m-1 p-2">
             All of our services hinge around our promise of delivering brand
             awareness, traffic and leads by bringing content, marketing and
             sales together. Each of our Business Hubs feed into whichever
@@ -31,7 +31,7 @@ export default function Services() {
           </p>
         </div>
 
-        <div class="services flex md:flex-row sm:flex-col flex-wrap mt-16 content-center">
+        <div class="services flex md:flex-row sm:flex-col flex-wrap mt-8 content-center">
           {/* <ServiceCard
             title="Digital Marketing"
             body="Want your buisness to be acclaimed? Broadcast your business to
@@ -40,7 +40,7 @@ export default function Services() {
           <TeamCard
             img={digiMark}
             title="Digital Marketing"
-            body="Want your buisness to be acclaimed? Broadcast your business to
+            body="Want your business to be acclaimed? Broadcast your business to
                 every inch of the globe with our digital marketing team."
           />
           <TeamCard

@@ -68,7 +68,7 @@ const Footer = () => {
             <ul className="footer-ul text-xl">
               <li className="flex items-center">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
-                <a href="mailto:support@etwot.com">support@etwot.com</a>
+                <a href="mailto:support@etwot.com">support@workwave.com</a>
               </li>
             </ul>
 

@@ -92,18 +92,18 @@ const Header = () => {
                         ) : (
                             <>
                                 <li class="nav__item">
-                                    <button
-                                        className="uppercase"
+                                    <div
+                                        className="uppercase nav__link"
                                         onClick={() => {
                                             navigate("/admindashboard");
                                         }}
                                     >
                                         Dashboard
-                                    </button>
+                                    </div>
                                 </li>
                                 <li class="nav__item">
-                                    <button
-                                        className="uppercase"
+                                    <div
+                                        className="uppercase nav__link"
                                         onClick={() => {
                                             localStorage.removeItem(
                                                 "admin_token"
@@ -113,7 +113,7 @@ const Header = () => {
                                         }}
                                     >
                                         Logout
-                                    </button>
+                                    </div>
                                 </li>
                             </>
                         )

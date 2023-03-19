@@ -101,8 +101,8 @@ export default function Signup() {
     <>
       <Navbar />
       <img className="imgabout absolute" src={about1} />
-      <div className="w-full h-screen bg-cover bg-center flex justify-center items-center px-4 bg-[#c7cacd]">
-        <div className="main z-1 mt-32">
+      <div className="w-full bg-cover bg-center flex justify-center items-center px-4 bg-[#c7cacd]">
+        <div className="main z-1 mt-32 mb-4">
           <input
             className="input"
             type="checkbox"
@@ -124,7 +124,7 @@ export default function Signup() {
                 <option value="" disabled selected hidden>
                   Admin/User
                 </option>
-                {/* <option value="admin">Admin</option> */}
+                <option value="admin">Admin</option>
                 <option value="user">User</option>
               </select>
               <input
@@ -196,7 +196,7 @@ export default function Signup() {
                 <option value="" disabled selected hidden>
                   Admin/User
                 </option>
-                {/* <option value="admin">Admin</option> */}
+                <option value="admin">Admin</option>
                 <option value="user">User</option>
               </select>
               <input

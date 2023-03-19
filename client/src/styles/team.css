@@ -4,8 +4,10 @@
   position: relative;
   overflow: hidden;
   text-align: center;
-  max-height: 32rem;
-  min-height: 27rem;
+  max-height: 30rem;
+  height: 26rem;
+  font-size: 1.2rem;
+  width: 16rem;
 }
 .teamBox:before {
   position: absolute;
@@ -54,23 +56,4 @@
 }
 .teamBox-desc {
   position: relative;
-}
-ul.social {
-  padding: 0;
-}
-ul.social li {
-  display: inline-block;
-  list-style-type: none;
-  margin: 0.2rem;
-}
-ul.social li a {
-  position: relative;
-  width: 36px;
-  height: 36px;
-  background-image: linear-gradient(to right, #3c70a4 0%, #64b2cd 100%);
-  display: inline-block;
-  line-height: 36px;
-  border-radius: 50%;
-  color: #fff;
-  transition: all 0.5s ease;
 }
