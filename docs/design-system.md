@@ -286,3 +286,14 @@ Routed but linked from nowhere. Out of scope unless you want it. If kept, it get
 - **Brand navy:** `#080041` stays the brand field and primary fill; `#000C66` stays the action fill on paper.
 - **Logo:** `logo.png` is used unchanged, at its own colours and proportions, on paper only, with alt text.
 - **Type stack:** the current stack never rendered (everything shows in fallback Roboto). The new stack replaces declared-but-unloaded faces, so no rendered brand typeface is lost. This change needs your approval (migration plan §4).
+
+---
+
+## 6. Revision 3 (2026-10-28): owner-approved changes
+Approved by the owner after reviewing the built redesign. Where this section and the rest of the document disagree, this section wins. Details and file scope are in `docs/landing-redesign-plan.md`.
+
+- **Landing page direction.** Home takes its structure from Watermelon UI landing and feature blocks (a split hero with product cards, a services bento, a split how-it-works, a dashboard showcase, an FAQ and a CTA panel) and keeps the theme in §2: navy, paper, teal, Big Shoulders and Public Sans, pill buttons. This replaces the "type and nothing else" hero and the poster list on Home (§1.5, §4.1).
+- **Imagery.** No archival or open-collection photographs anywhere (§1.7 items 3 and 5 are withdrawn). Graphics are WorkWave's own UI built in HTML, the project's two illustrations, and flat inline SVG drawings per service in theme colours.
+- **Cards.** Rounded cards (`--radius-card: 24px`) and bento grids are allowed on Home and Services. Hover-only lift shadows (`--shadow-lift`) are allowed on interactive cards. Resting shadows, gradients, glass and icon-in-tinted-square tiles stay banned.
+- **One navbar.** Every route, dashboards included, uses `SiteHeader`. `AppShell` becomes `SiteHeader` plus a dashboard sub-nav strip and the white sheet. The tinted L-frame, sidebar and app top bar (§3 AppShell, §4.6–4.8 shell) are withdrawn.
+- **New tokens:** `--navy-raised #14116A`, `--navy-raised-2 #1E1A7A`, `--on-navy-faint #9EA3C9`, `--card #FFFFFF`, `--card-tint #E9EBF1`, `--radius-card 24px`, `--shadow-lift 0 10px 30px rgba(8, 0, 65, 0.12)`.
