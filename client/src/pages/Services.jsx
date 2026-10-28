@@ -1,8 +1,8 @@
 import React from "react";
-import Navbar from "../components/navbar";
+import SiteHeader from "../components/layout/SiteHeader";
+import SiteFooter from "../components/layout/SiteFooter";
 import about1 from "../assets/about1.svg";
 import "../styles/index.css";
-import Footer from "../components/Footer";
 import ServiceCard from "../components/ServiceCard";
 import TeamCard from "../components/TeamCard";
 import logoDes from "../assets/logo-design.png";
@@ -10,12 +10,12 @@ import graphicDes from "../assets/graphic-design.jpg";
 import digiMark from "../assets/digital-marketing.png";
 import contentCreation from "../assets/content-creation.png";
 import webDev from "../assets/web-dev.jpg";
-import Navbar2 from "../components/Navbar2";
 
 export default function Services() {
   return (
-    <div className="h-screen">
-      <Navbar />
+    <div className="site h-screen">
+      <SiteHeader />
+      <main id="main">
       <div className="servicesbg p-16 bg-slate-100">
         {/* <img className="imgabout" src={about1} /> */}
         <div className="title text-left text-3xl font-semibold text-white">
@@ -31,7 +31,7 @@ export default function Services() {
           </p>
         </div>
 
-        <div class="services flex md:flex-row sm:flex-col flex-wrap mt-8 content-center">
+        <div class="services flex flex-col md:flex-row flex-wrap mt-8 content-center">
           {/* <ServiceCard
             title="Digital Marketing"
             body="Want your buisness to be acclaimed? Broadcast your business to
@@ -70,7 +70,8 @@ export default function Services() {
           />
         </div>
       </div>
-      <Footer />
+      </main>
+      <SiteFooter />
     </div>
   );
 }

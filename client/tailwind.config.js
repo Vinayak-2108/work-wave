@@ -1,27 +1,78 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    screens: {
-      sm: "320px",
-      // => @media (min-width: 640px) { ... }
-
-      md: "768px",
-      // => @media (min-width: 768px) { ... }
-
-      lg: "1024px",
-      // => @media (min-width: 1024px) { ... }
-
-      xl: "1280px",
-      // => @media (min-width: 1280px) { ... }
-
-      "2xl": "1536px",
-      // => @media (min-width: 1536px) { ... }
-    },
-
     extend: {
-      backgroundImage: {
-        "hero-image": 'url("./components/assets/bg.svg")',
-        "alt-image": 'url("./components/assets/earth.jpg")',
+      colors: {
+        navy: "var(--navy)",
+        teal: "var(--teal)",
+        action: "var(--action)",
+        paper: "var(--paper)",
+        ink: "var(--ink)",
+        muted: "var(--muted)",
+        "on-teal": "var(--on-teal)",
+        "on-navy": "var(--on-navy)",
+        "on-navy-muted": "var(--on-navy-muted)",
+        highlight: "var(--highlight)",
+        surface: "var(--surface)",
+        frame: "var(--frame)",
+        raised: "var(--raised)",
+        active: "var(--active)",
+        border: "var(--border)",
+        rule: "var(--rule)",
+        control: "var(--control)",
+        text: "var(--text)",
+        faint: "var(--faint)",
+        primary: "var(--primary)",
+        accent: "var(--accent)",
+        focus: "var(--focus)",
+        positive: "var(--positive)",
+        negative: "var(--negative)",
+        "pill-pending-bg": "var(--pill-pending-bg)",
+        "pill-pending-ink": "var(--pill-pending-ink)",
+        "pill-pending-border": "var(--pill-pending-border)",
+        "pill-accepted-bg": "var(--pill-accepted-bg)",
+        "pill-accepted-ink": "var(--pill-accepted-ink)",
+        "pill-rejected-bg": "var(--pill-rejected-bg)",
+        "pill-rejected-ink": "var(--pill-rejected-ink)",
+      },
+      fontFamily: {
+        display: "var(--font-display)",
+        text: "var(--font-text)",
+      },
+      fontSize: {
+        display: ["var(--step-display)", { lineHeight: "0.88", letterSpacing: "-0.005em" }],
+        head: ["var(--step-head)", { lineHeight: "0.95" }],
+        lead: ["var(--step-lead)", { lineHeight: "1.35" }],
+        body: ["var(--step-body)", { lineHeight: "1.5" }],
+        small: ["var(--step-small)", { lineHeight: "1.5" }],
+      },
+      spacing: {
+        margin: "var(--margin)",
+        gutter: "var(--gutter)",
+        section: "var(--section)",
+        pad: "var(--pad)",
+        gap: "var(--gap)",
+        "card-pad": "var(--card-pad)",
+        "row-height": "var(--row-height)",
+        "control-height": "var(--control-height)",
+      },
+      borderRadius: {
+        pill: "var(--radius-pill, 999px)",
+        sheet: "var(--radius-sheet)",
+        panel: "var(--radius-panel)",
+        input: "var(--radius-input)",
+      },
+      boxShadow: {
+        menu: "var(--shadow-menu)",
+        dialog: "var(--shadow-dialog)",
+      },
+      transitionTimingFunction: {
+        out: "var(--ease-out)",
+      },
+      transitionDuration: {
+        fast: "var(--dur-fast)",
+        base: "var(--dur)",
+        enter: "var(--dur-enter)",
       },
     },
   },

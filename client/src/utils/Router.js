@@ -10,6 +10,7 @@ import Signup from "../pages/Signup";
 import UserDashboard from "../pages/userDashboard";
 import AdminDashboard from "../pages/adminDashboard";
 import RequestService from "../pages/RequestService";
+import RequireAuth from "./RequireAuth";
 
 export default function Router() {
   return (
@@ -22,10 +23,21 @@ export default function Router() {
           <Route exact path="/team" element={<Team />} />
           <Route exact path="/privacy" element={<Privacy />} />
           <Route exact path="/SignUp" element={<Signup />} />
-          <Route exact path="/userdashboard" element={<UserDashboard />} />
-          <Route exact path="/admindashboard" element={<AdminDashboard />} />
-          <Route exact path="/requestservice" element={<RequestService />} />
-          {/* <Route exact path="/payment" element={<ProductDisplay />}></Route> */}
+          <Route exact path="/userdashboard" element={
+              <RequireAuth role="user">
+                <UserDashboard />
+              </RequireAuth>
+            } />
+          <Route exact path="/admindashboard" element={
+              <RequireAuth role="admin">
+                <AdminDashboard />
+              </RequireAuth>
+            } />
+          <Route exact path="/requestservice" element={
+              <RequireAuth role="user">
+                <RequestService />
+              </RequireAuth>
+            } />
         </Routes>
       </BrowserRouter>
     </>

@@ -1,0 +1,115 @@
+/*
+ * Design tokens for WorkWave "Job Slip" (docs/design-system.md section 2).
+ * Shared tokens sit on :root. Marketing tokens apply inside .site,
+ * dashboard tokens inside .app. Tailwind maps onto these in tailwind.config.js.
+ */
+
+/* Shared: brand colours, faces, motion, floating shadows (2.1, 2.3, 2.5, 2.8) */
+:root {
+  --navy: #080041;
+  --teal: #38cfd9;
+  --action: #000c66;
+
+  --font-display: "Big Shoulders", "Arial Narrow", sans-serif;
+  --font-text: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --shadow-menu: 0 2px 8px rgba(8, 0, 65, 0.06);
+  --shadow-dialog: 0 16px 40px rgba(8, 0, 65, 0.16);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 150ms;
+  --dur: 300ms;
+  --dur-enter: 600ms;
+}
+
+/* Marketing (2.1, 2.3, 2.4, 2.5, 2.7) */
+.site {
+  --paper: #f4f5f7;
+  --ink: #080041;
+  --muted: #4a4f63;
+  --on-teal: #080041;
+  --on-navy: #f4f5f7;
+  --on-navy-muted: #c9cce6;
+  --highlight: #38cfd9;
+  --surface: #ffffff;
+  --focus: var(--action);
+  --positive: #247b50;
+  --negative: #c4242a;
+
+  --step-display: clamp(88px, 15vw, 232px);
+  --step-head: clamp(2.5rem, 1.2rem + 5vw, 5.5rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+
+  --margin: clamp(16px, 2.5vw, 32px);
+  --gutter: clamp(16px, 2vw, 24px);
+  --section: clamp(96px, 12vw, 200px);
+
+  --pad: 24px;
+  --radius-sheet: 16px;
+  --radius-panel: 10px;
+  --radius-input: 10px;
+  --radius-pill: 999px;
+
+  font-family: var(--font-text);
+  color: var(--ink);
+  background-color: var(--paper);
+}
+
+/* Dashboards (2.2, 2.3, 2.4, 2.5, 2.7) */
+.app {
+  --frame: #f3f4f8;
+  --surface: #ffffff;
+  --raised: #f8f9fb;
+  --active: #eceef4;
+  --border: #e8e8ec;
+  --rule: #f1f2f5;
+  --control: #d1d5db;
+  --text: #111111;
+  --muted: #5f6368;
+  --faint: #6b6b6b;
+  --primary: #080041;
+  --accent: #0e7c86;
+
+  /* Marketing-named tokens that shared primitives (Button) read inside .app */
+  --paper: #f4f5f7;
+  --ink: #080041;
+  --on-teal: #080041;
+  --on-navy: #f4f5f7;
+  --on-navy-muted: #c9cce6;
+  --highlight: #38cfd9;
+  --focus: var(--accent);
+
+  --pill-pending-bg: #fffbeb;
+  --pill-pending-ink: #92400e;
+  --pill-pending-border: #fde68a;
+  --pill-accepted-bg: #dcfae5;
+  --pill-accepted-ink: #04250e;
+  --pill-rejected-bg: #ffedea;
+  --pill-rejected-ink: #831c1e;
+  --positive: #247b50;
+  --negative: #c4242a;
+
+  --pad: 24px;
+  --gap: 16px;
+  --card-pad: 20px;
+  --row-height: 56px;
+  --control-height: 36px;
+
+  --radius-sheet: 16px;
+  --radius-panel: 10px;
+  --radius-input: 10px;
+  --radius-pill: 999px;
+
+  font-family: var(--font-text);
+  font-size: 14px;
+  color: var(--text);
+  background-color: var(--frame);
+}
+
+@media (max-width: 639.98px) {
+  .app {
+    --control-height: 44px;
+  }
+}

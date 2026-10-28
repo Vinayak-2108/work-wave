@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/navbar";
+import AppShell from "../components/layout/AppShell";
 import { useNavigate } from "react-router-dom";
 
 import { auth_user, submit_form } from "../controllers/user";
@@ -55,8 +55,7 @@ export default function DashboardApplicant() {
   };
 
   return (
-    <>
-      <Navbar />
+    <AppShell title="Request a service">
       <div className="dashbg p-16">
         {/* <img className="imgabout" src={about1} /> */}
         <div className="userdetails bg-[#e6e6e6] rounded-lg shadow-2xl p-16 ml-10 mr-10 mt-20">
@@ -180,6 +179,6 @@ export default function DashboardApplicant() {
           )}
         </div>
       </div>
-    </>
+    </AppShell>
   );
 }

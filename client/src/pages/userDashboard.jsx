@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/navbar";
-import Footer from "../components/Footer";
+import AppShell from "../components/layout/AppShell";
 import { useNavigate } from "react-router-dom";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import logo from "../assets/logo.png"
@@ -125,8 +124,7 @@ const onError = (data, actions) => {
   }, []);
 
   return (
-    <>
-      <Navbar />
+    <AppShell title="Requests">
 
       <PayPalScriptProvider options={{ "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID }}>
       <div className="dashbg p-16 flex flex-col items-center">
@@ -213,7 +211,7 @@ const onError = (data, actions) => {
 
             {forms ? (
               forms.map((form) => (
-                <div className="rounded flex md:flex-row sm:flex-col">
+                <div className="rounded flex flex-col md:flex-row">
                   <div
                     className={`dashcard p-10 ${form.action} mt-5 mb-5 w-full rounded-lg text-white flex flex-row justify-between`}
                   >
@@ -337,7 +335,6 @@ const onError = (data, actions) => {
       </div>
       </PayPalScriptProvider>
      
-      <Footer />
-    </>
+    </AppShell>
   );
 }

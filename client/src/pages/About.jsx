@@ -1,16 +1,16 @@
 import React from "react";
-import Navbar from "../components/navbar";
+import SiteHeader from "../components/layout/SiteHeader";
+import SiteFooter from "../components/layout/SiteFooter";
 import "../styles/index.css";
 import about1 from "../assets/about1.svg";
 import aboutus from "../assets/aboutimg.png";
-import Footer from "../components/Footer";
-import Navbar2 from "../components/Navbar2";
 
 export default function About() {
   return (
-    <>
-      <Navbar />
+    <div className="site">
+      <SiteHeader />
 
+      <main id="main">
       <div className="aboutbg p-16">
         {/* <img className="imgabout" src={about1} /> */}
         <div className="flex justify-center items-center flex-col title text-left pt-16 text-5xl font-semibold text-white">
@@ -29,7 +29,8 @@ export default function About() {
         </div>
       </div>
       <div className="position-fixed bottom-0"></div>
-      <Footer />
-    </>
+      </main>
+      <SiteFooter />
+    </div>
   );
 }

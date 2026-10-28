@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../styles/signup.css";
-import Navbar from "../components/navbar";
+import SiteHeader from "../components/layout/SiteHeader";
+import SiteFooter from "../components/layout/SiteFooter";
 import about1 from "../assets/about1.svg";
-import Footer from "../components/Footer";
 import { NavLink, useNavigate } from "react-router-dom";
 import { login_admin } from "../controllers/admin";
 import { login_user } from "../controllers/user";
@@ -98,8 +98,9 @@ export default function Signup() {
   // };
 
   return (
-    <>
-      <Navbar />
+    <div className="site">
+      <SiteHeader />
+      <main id="main">
       <img className="imgabout absolute" src={about1} />
       <div className="w-full bg-cover bg-center flex justify-center items-center px-4 bg-[#c7cacd]">
         <div className="main z-1 mt-32 mb-4">
@@ -226,7 +227,8 @@ export default function Signup() {
           </div>
         </div>
       </div>
-      <Footer />
-    </>
+      </main>
+      <SiteFooter />
+    </div>
   );
 }

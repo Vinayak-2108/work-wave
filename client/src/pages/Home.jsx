@@ -1,12 +1,11 @@
 import React from "react";
-import Navbar from "../components/navbar";
+import SiteHeader from "../components/layout/SiteHeader";
+import SiteFooter from "../components/layout/SiteFooter";
 import Card from "../components/Card/card";
 import wave1 from "../assets/bg.svg";
 import "../components/Card/style.css";
 import cardbg from "../assets/cardbg.jpg";
 import InfoCard from "../components/InfoCard";
-import Footer from "../components/Footer";
-import Navbar2 from "../components/Navbar2";
 
 export default function Home() {
   const img1 = () => {
@@ -25,10 +24,11 @@ export default function Home() {
   };
 
   return (
-    <>
-      <Navbar />
+    <div className="site">
+      <SiteHeader />
+      <main id="main">
       <div
-        className="w-full h-screen bg-cover bg-center flex flex-col items-center px-4"
+        className="w-full h-screen bg-cover bg-center flex flex-col items-center px-4 overflow-x-hidden"
         id="hero"
       >
         <div className="w-full h-screen bg-cover bg-center flex items-center justify-between px-4">
@@ -60,7 +60,8 @@ export default function Home() {
       <div className="w-full h-screen bg-cover bg-center flex items-center justify-end px-4">
         <InfoCard />
       </div>
-      <Footer />
-    </>
+      </main>
+      <SiteFooter />
+    </div>
   );
 }
