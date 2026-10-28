@@ -4,25 +4,9 @@ import SiteFooter from "../components/layout/SiteFooter";
 import { Button } from "../components/ui";
 import CtaBand from "../components/site/CtaBand";
 import Reveal from "../components/site/Reveal";
-import { archive, creditsFor } from "../components/site/archive";
-
-const credits = creditsFor("billboard", "presses", "signPainter", "drafting", "lithograph");
+import ServiceVisual from "../components/site/ServiceVisual";
 
 const h2 = "font-display text-head font-extrabold uppercase leading-[0.95] tracking-[-0.005em]";
-
-function Picture({ pic, className = "" }) {
-  return (
-    <img
-      src={pic.src}
-      width={pic.width}
-      height={pic.height}
-      alt={pic.alt}
-      loading="lazy"
-      decoding="async"
-      className={className}
-    />
-  );
-}
 
 /* Heading, description and the one link; `onDark` for navy fields. */
 function Text({ id, title, children, onDark = false, className = "" }) {
@@ -41,6 +25,17 @@ function Text({ id, title, children, onDark = false, className = "" }) {
   );
 }
 
+/* A large drawing on a white card (paper fields) or a navy-raised card (navy fields). */
+function Visual({ service, dark = false, className = "" }) {
+  return (
+    <Reveal className={className}>
+      <div className={`rounded-card p-4 md:p-6 ${dark ? "bg-navy-raised" : "bg-card"}`}>
+        <ServiceVisual service={service} tone={dark ? "dark" : "light"} />
+      </div>
+    </Reveal>
+  );
+}
+
 export default function Services() {
   useEffect(() => {
     document.title = "Services · WorkWave";
@@ -50,7 +45,7 @@ export default function Services() {
     <div className="site">
       <SiteHeader />
       <main id="main">
-        <section className="bg-paper px-margin pb-section pt-14 md:pt-20">
+        <section className="bg-paper px-margin pb-[calc(var(--section)*0.6)] pt-14 md:pt-20">
           <div className="grid grid-cols-1 gap-x-gutter gap-y-8 md:grid-cols-12 md:items-end">
             <Reveal
               as="h1"
@@ -66,8 +61,8 @@ export default function Services() {
           </div>
         </section>
 
-        {/* Marketing: picture left, text right, on paper */}
-        <section aria-labelledby="svc-marketing" className="bg-paper px-margin pb-section">
+        {/* Marketing: drawing left, text right, on paper */}
+        <section aria-labelledby="svc-marketing" className="bg-paper px-margin pb-[calc(var(--section)*0.6)]">
           <div className="grid grid-cols-1 gap-x-gutter gap-y-8 md:grid-cols-12 md:items-center">
             <Text
               id="svc-marketing"
@@ -77,69 +72,46 @@ export default function Services() {
               Want your business to be acclaimed? Broadcast your business to every inch of the globe with our
               digital marketing team.
             </Text>
-            <Reveal className="md:col-span-5 md:row-start-1">
-              <Picture pic={archive.billboard} className="aspect-[4/5] w-full object-cover object-[35%_50%]" />
-            </Reveal>
+            <Visual service="marketing" className="md:col-span-6 md:row-start-1" />
           </div>
         </section>
 
-        {/* Content: full-bleed picture, text in a navy field below */}
-        <Picture pic={archive.presses} className="h-[60svh] w-full object-cover object-[50%_60%]" />
-        <section aria-labelledby="svc-content" className="bg-navy px-margin py-section text-on-navy [--focus:var(--teal)]">
-          <div className="grid grid-cols-1 gap-x-gutter gap-y-6 md:grid-cols-12 md:items-end">
-            <Reveal className="md:col-span-6">
-              <h2 id="svc-content" className={h2}>
-                Content Creation
-              </h2>
-            </Reveal>
-            <Reveal delay={90} className="md:col-span-5 md:col-start-8">
-              <p className="max-w-[34ch] text-lead text-on-navy-muted">
-                Confused about how to start your write-up? Let our experts glide in and take over with creativity.
-              </p>
-              <div className="mt-6">
-                <Button to="/signup" variant="text" onDark arrow className="max-md:-ml-2">
-                  Request this service
-                </Button>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* Logo: text left, picture right, on paper */}
-        <section aria-labelledby="svc-logo" className="bg-paper px-margin py-section">
+        {/* Content: navy field, text left, drawing right */}
+        <section aria-labelledby="svc-content" className="bg-navy px-margin py-[calc(var(--section)*0.6)] text-on-navy [--focus:var(--teal)]">
           <div className="grid grid-cols-1 gap-x-gutter gap-y-8 md:grid-cols-12 md:items-center">
-            <Text id="svc-logo" title="Logo Designing" className="md:col-span-5 md:row-start-1">
+            <Text id="svc-content" title="Content Creation" onDark className="md:col-span-5">
+              Confused about how to start your write-up? Let our experts glide in and take over with creativity.
+            </Text>
+            <Visual service="content" dark className="md:col-span-6 md:col-start-7" />
+          </div>
+        </section>
+
+        {/* Logo: paper, drawing left, text right */}
+        <section aria-labelledby="svc-logo" className="bg-paper px-margin py-[calc(var(--section)*0.6)]">
+          <div className="grid grid-cols-1 gap-x-gutter gap-y-8 md:grid-cols-12 md:items-center">
+            <Text id="svc-logo" title="Logo Designing" className="md:col-span-5 md:col-start-8 md:row-start-1">
               Don't have an identity for your idea? Give a face to your ideas with a whole new personalised
               designing experience.
             </Text>
-            <Reveal className="md:col-span-5 md:col-start-8 md:row-start-1">
-              <Picture pic={archive.signPainter} className="aspect-[4/5] w-full object-cover object-[60%_40%]" />
-            </Reveal>
+            <Visual service="logo" className="md:col-span-6 md:row-start-1" />
           </div>
         </section>
 
-        {/* Web: navy field, picture running to the right edge */}
-        <section
-          aria-labelledby="svc-web"
-          className="bg-navy py-section pl-margin pr-margin text-on-navy [--focus:var(--teal)] md:pr-0"
-        >
+        {/* Web: navy field, text left, drawing right */}
+        <section aria-labelledby="svc-web" className="bg-navy px-margin py-[calc(var(--section)*0.6)] text-on-navy [--focus:var(--teal)]">
           <div className="grid grid-cols-1 gap-x-gutter gap-y-8 md:grid-cols-12 md:items-center">
             <Text id="svc-web" title="Web Development" onDark className="md:col-span-5">
               Want a personal space for your business? Create your own website with the extremely skilled coders
               and creators.
             </Text>
-            <Reveal className="md:col-span-6 md:col-start-7">
-              <Picture pic={archive.drafting} className="aspect-[4/5] w-full object-cover object-[45%_55%]" />
-            </Reveal>
+            <Visual service="web" dark className="md:col-span-6 md:col-start-7" />
           </div>
         </section>
 
-        {/* Graphics: paper, the picture large, the text under it */}
-        <section aria-labelledby="svc-graphic" className="bg-paper px-margin py-section">
+        {/* Graphics: paper, the drawing large, the text under it */}
+        <section aria-labelledby="svc-graphic" className="bg-paper px-margin py-[calc(var(--section)*0.6)]">
           <div className="grid grid-cols-1 gap-x-gutter gap-y-8 md:grid-cols-12">
-            <Reveal className="md:col-span-6 md:col-start-4">
-              <Picture pic={archive.lithograph} className="aspect-[4/5] w-full object-cover" />
-            </Reveal>
+            <Visual service="graphic" className="md:col-span-6 md:col-start-4" />
             <Text id="svc-graphic" title="Graphic Designing" className="md:col-span-6 md:col-start-4">
               Looking for a graphical experience? Let us take over and animate your imagination into a product.
             </Text>
@@ -148,7 +120,7 @@ export default function Services() {
 
         <CtaBand />
       </main>
-      <SiteFooter credits={credits} />
+      <SiteFooter />
     </div>
   );
 }

@@ -16,6 +16,7 @@ import "./site.css";
  * After a flip, focus moves to the toggle on the face now showing, and the
  * hidden face collapses to zero height once the turn ends, so the stage is
  * only as tall as the face you are looking at.
+ * The stage sits in a rounded-card frame on navy-raised (landing redesign).
  * State stays in this component: no page reloads, no network.
  */
 export const SLIP_KEY = "workwave.slip";
@@ -121,7 +122,8 @@ function JobSlip() {
   }, [valid, service, budget, role, navigate]);
 
   return (
-    <div className="slip-stage w-full max-w-[440px] text-ink" style={{ clipPath: clip }}>
+    <div className="rounded-card bg-navy-raised p-4 md:p-8">
+    <div className="slip-stage mx-auto w-full max-w-[440px] text-ink" style={{ clipPath: clip }}>
       <div className="slip-face slip-front bg-paper px-6 pb-12 pt-6" data-hidden={flipped}>
         <p className="text-lead font-semibold">Job slip</p>
 
@@ -212,6 +214,7 @@ function JobSlip() {
           </Button>
         </div>
       </div>
+    </div>
     </div>
   );
 }

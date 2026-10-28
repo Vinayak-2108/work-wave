@@ -30,6 +30,11 @@
   --on-teal: #080041;
   --on-navy: #f4f5f7;
   --on-navy-muted: #c9cce6;
+  --on-navy-faint: #9ea3c9;
+  --navy-raised: #14116a;
+  --navy-raised-2: #1e1a7a;
+  --card: #ffffff;
+  --card-tint: #e9ebf1;
   --highlight: #38cfd9;
   --surface: #ffffff;
   --focus: var(--action);
@@ -51,6 +56,8 @@
   --radius-panel: 10px;
   --radius-input: 10px;
   --radius-pill: 999px;
+  --radius-card: 24px;
+  --shadow-lift: 0 10px 30px rgba(8, 0, 65, 0.12);
 
   font-family: var(--font-text);
   color: var(--ink);

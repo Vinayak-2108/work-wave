@@ -6,9 +6,8 @@ import Reveal from "../site/Reveal";
 
 /*
  * Marketing footer: compact navy field. Left: small logo on a paper chip
- * plus a one-line description. Right: plain lists (Pages, Services, Contact,
- * and Credits when `credits` is given). Bottom: legal line.
- * `credits`: optional [{ label, href }] for picture credits (Phase 4).
+ * plus a one-line description. Right: plain lists (Pages, Services, Contact).
+ * Bottom: legal line.
  */
 const pages = [
   { to: "/", label: "Home" },
@@ -31,7 +30,7 @@ const link =
 
 const heading = "mb-3 text-body font-semibold text-on-navy-muted";
 
-function SiteFooter({ credits = [] }) {
+function SiteFooter() {
   return (
     <footer className="site bg-navy px-margin pb-6 pt-14 text-on-navy [--focus:var(--teal)]">
       <div className="grid grid-cols-1 gap-x-gutter gap-y-10 md:grid-cols-2 lg:grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))]">
@@ -78,18 +77,6 @@ function SiteFooter({ credits = [] }) {
           </ul>
         </Reveal>
 
-        {credits.length > 0 ? (
-          <Reveal as="section" delay={300} aria-labelledby="footer-credits">
-            <h2 id="footer-credits" className={heading}>Credits</h2>
-            <ul className="flex flex-col gap-1">
-              {credits.map((c) => (
-                <li key={c.href}>
-                  <a href={c.href} className={link}>{c.label}</a>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        ) : null}
       </div>
 
       <p className="mt-12 text-small text-on-navy-muted">

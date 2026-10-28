@@ -1,32 +1,34 @@
 import { memo } from "react";
-import { Link } from "react-router-dom";
-import { ArrowIcon } from "../ui";
+import { Button } from "../ui";
+import Reveal from "./Reveal";
 
 /*
- * The whole band is one link to /signup. Teal field, 46svh on phones and
- * 60svh from md. The word REQUEST spans the width on one line; the sentence
- * sits top-left and an arrow top-right. Hover and focus swap field and word
- * colours. The accessible name is "Request a service" (it contains the
- * visible word).
+ * Closing call to action: a teal rounded panel inside the page margins, on
+ * the paper ground. The heading and sentence are text; only the navy pill
+ * button links to /signup. The focus ring is navy, because teal is invisible
+ * on teal.
  */
 function CtaBand() {
   return (
-    <Link
-      to="/signup"
-      aria-label="Request a service"
-      className="group flex min-h-[46svh] flex-col justify-between bg-teal px-margin pb-4 pt-6 text-on-teal transition-colors duration-fast ease-out hover:bg-navy hover:text-teal focus-visible:[outline-offset:-6px] focus-visible:[outline-color:var(--on-teal)] md:min-h-[60svh] md:pb-6 md:pt-8"
+    <section
+      aria-labelledby="cta-heading"
+      className="bg-paper px-margin pb-12 pt-12 text-on-teal md:pb-16 md:pt-16"
     >
-      <span className="flex items-start justify-between gap-gutter">
-        <span className="relative z-10 max-w-[24ch] text-lead">Post your first job. It takes a minute.</span>
-        <ArrowIcon size={48} className="flex-none -rotate-45 transition-transform duration-fast ease-out group-hover:translate-x-1 group-hover:-translate-y-1 max-md:h-8 max-md:w-8" />
-      </span>
-      <span
-        aria-hidden="true"
-        className="block whitespace-nowrap pb-[0.14em] pt-8 font-display text-[min(26vw,520px)] md:text-[min(29.4vw,520px)] font-extrabold uppercase leading-[0.8] tracking-[-0.005em]"
-      >
-        Request
-      </span>
-    </Link>
+      <Reveal className="grid grid-cols-1 items-end gap-x-gutter gap-y-8 rounded-card bg-teal p-8 [--focus:var(--on-teal)] md:grid-cols-12 md:p-14">
+        <h2
+          id="cta-heading"
+          className="font-display text-head font-extrabold uppercase leading-[0.95] tracking-[-0.005em] md:col-span-7"
+        >
+          Post your first job
+        </h2>
+        <div className="flex flex-col items-start gap-6 md:col-span-5">
+          <p className="max-w-[28ch] text-lead">It takes a minute. A person reads every brief.</p>
+          <Button to="/signup" arrow>
+            Request a service
+          </Button>
+        </div>
+      </Reveal>
+    </section>
   );
 }
 

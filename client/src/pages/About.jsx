@@ -3,14 +3,20 @@ import SiteHeader from "../components/layout/SiteHeader";
 import SiteFooter from "../components/layout/SiteFooter";
 import AboutStatement from "../components/site/AboutStatement";
 import CtaBand from "../components/site/CtaBand";
-import TradeStrip from "../components/site/TradeStrip";
 import Reveal from "../components/site/Reveal";
-import { archive, creditsFor } from "../components/site/archive";
+import ServiceVisual from "../components/site/ServiceVisual";
 import aboutus from "../assets/aboutimg.png";
-
-const credits = creditsFor("signPainter", "billboard", "lithograph", "drafting");
+import workspace from "../assets/bg-1600.jpg";
 
 const statement = "text-[clamp(1.5rem,1.1rem+1.2vw,2.25rem)] leading-[1.2]";
+
+const trades = [
+  { key: "web", wide: true },
+  { key: "marketing" },
+  { key: "content" },
+  { key: "logo" },
+  { key: "graphic" },
+];
 
 export default function About() {
   useEffect(() => {
@@ -42,9 +48,21 @@ export default function About() {
 
         <AboutStatement headingId="about-story" />
 
-        <TradeStrip keys={["signPainter", "billboard", "lithograph"]} label="The trades before software" />
+        <section aria-label="The WorkWave workspace" className="bg-paper px-margin pb-[calc(var(--section)*0.6)]">
+          <Reveal scale className="overflow-hidden rounded-card">
+            <img
+              src={workspace}
+              width={1600}
+              height={900}
+              alt="An isometric workspace: a laptop with charts and documents beside a person looking at the screen."
+              loading="lazy"
+              decoding="async"
+              className="w-full"
+            />
+          </Reveal>
+        </section>
 
-        <section aria-labelledby="about-promise" className="bg-navy px-margin py-section text-on-navy">
+        <section aria-labelledby="about-promise" className="bg-navy px-margin py-[calc(var(--section)*0.6)] text-on-navy">
           <div className="grid grid-cols-1 items-center gap-x-gutter gap-y-10 md:grid-cols-12">
             <Reveal className="md:col-span-6">
               <h2 id="about-promise" className="sr-only">
@@ -55,22 +73,23 @@ export default function About() {
               <p className={statement}>A person who reads every brief.</p>
             </Reveal>
             <Reveal delay={120} className="md:col-span-5 md:col-start-8">
-              <img
-                src={archive.drafting.src}
-                width={archive.drafting.width}
-                height={archive.drafting.height}
-                alt={archive.drafting.alt}
-                loading="lazy"
-                decoding="async"
-                className="aspect-[4/3] w-full object-cover"
-              />
+              <div className="grid grid-cols-2 gap-3 rounded-card bg-navy-raised p-4 md:p-6">
+                {trades.map((t) => (
+                  <ServiceVisual
+                    key={t.key}
+                    service={t.key}
+                    tone="dark"
+                    className={t.wide ? "col-span-2" : ""}
+                  />
+                ))}
+              </div>
             </Reveal>
           </div>
         </section>
 
         <CtaBand />
       </main>
-      <SiteFooter credits={credits} />
+      <SiteFooter />
     </div>
   );
 }
