@@ -107,8 +107,10 @@ No page uses them yet. A temporary route isn't added (URL structure is protected
 
 ### Phase 6: app screens
 - Rebuild `pages/userDashboard.jsx`, `pages/RequestService.jsx` and `pages/adminDashboard.jsx` to design-system §4.6–4.8.
-- Keep every controller call, `handleAction`, `handlePay`, PayPal options and field `name`s.
-- Read the slip draft from `sessionStorage` in RequestService.
+- Keep every controller call and payload, `handleAction`, the pay flow (amount from `get_forms_by_formid`, `createOrder` in USD, buttons mounted only after Checkout), PayPal options and field `name`s (`txt`, `Description`, `budget`, `user_type`). Admin Accept/Deny keep `name={_id}` and value `accept`/`deny` on the `<button>`.
+- Image upload is discontinued (user decision): no `images` field, no file input, no "Up to 10 images" copy. The preserved field list no longer includes `images`.
+- No `window.location.reload()` after edit, delete or accept/deny: state updates in place (status pill and counts recompute). Auth runs once on mount, not on every render. `alert()` becomes Notice; Delete gets a confirm Dialog with a loading state; Edit opens one Dialog for the selected request, prefilled.
+- Read the slip draft from `sessionStorage["workwave.slip"]` in RequestService, prefill service and budget, then remove it.
 
 ### Phase 7: motion
 - Stamp, entrances, feedback states, the slow-scale picture. Reduced-motion pass.
@@ -171,7 +173,7 @@ Not changing, whatever you decide above: every route path (including `/SignUp` a
 - `prefers-reduced-motion: reduce` emulated: all content visible, no travel.
 
 ### 5.4 Regression
-- **Preservation diff:** rerun the Phase 0 inventory script on the new build and diff it. It must be empty except for items you approved in §4.
+- **Preservation diff:** rerun the Phase 0 inventory script on the new build and diff it. It must be empty except for items you approved in §4 and the discontinued `images` field (Phase 6 user decision; it was commented out in the source and never rendered).
 - **Flows, run locally against your Atlas DB or a dev database** with a test account I create there (never on production):
   - client sign up → log in → slip builder → request form prefilled → submit → appears as Pending
   - admin log in → accept → client sees Accepted → Pay dialog opens PayPal sandbox

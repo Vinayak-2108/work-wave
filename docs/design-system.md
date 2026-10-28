@@ -266,12 +266,12 @@ Pictures on this page: isometric illustration, two archival trade pictures (betw
   - Service: `user_type`, as a select of the five services.
   - Brief: `Description`, textarea.
   - Budget: `budget`, numeric with a currency prefix.
-  - Images: `images`, file input with the visible limit "Up to 10 images, 1 MB each" tied by `aria-describedby`.
-- Prefilled from the slip builder when present. Submit, then go to `/userdashboard` with a success Notice.
+  - No images field: image upload is discontinued (user decision, Phase 6). The form has three fields, and the `submit_form` payload is `{form_title, form_desc, form_budget, token}`.
+- Prefilled from the slip builder when present (`sessionStorage["workwave.slip"]` is read once, then removed). Budget is validated as whole numbers. Submit, then go to `/userdashboard` with a success Notice, without a page reload.
 - Phone: stacked.
 
 ### 4.8 Admin dashboard `/admindashboard` (AppShell, inbox triage)
-- `h1` "Queue". CountFilter (Pending first, then Accepted, Rejected).
+- `h1` "Queue". CountFilter (All, Pending, Accepted, Rejected; Pending is selected on load). Below 1024px it is hidden while the detail view is open.
 - Desktop: a fixed 384px list column of RequestRows (client name, budget, title, pill) and an open-item panel with the full brief, budget, client contact, and two buttons: Accept (primary) and Deny (secondary, negative text). They keep the existing `handleAction` and `name={_id}` wiring.
 - Phone: list first; choosing a row pushes the detail; Back returns at the same scroll position.
 - States: as 4.6. After an action the row's pill updates in place and the counts recompute.
