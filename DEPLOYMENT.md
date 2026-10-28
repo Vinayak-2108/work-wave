@@ -51,7 +51,7 @@ Do them in this order: Render needs the Atlas URI, Vercel needs the Render URL, 
    |---|---|
    | Root Directory | `client` |
    | Framework Preset | Create React App |
-   | Build Command | leave default; `client/vercel.json` sets `CI=false npm run build` |
+   | Build Command | leave default (`npm run build`) |
    | Output Directory | `build` (default) |
 3. **Environment Variables**:
    | Key | Value |
@@ -59,7 +59,7 @@ Do them in this order: Render needs the Atlas URI, Vercel needs the Render URL, 
    | `REACT_APP_API_URL` | `https://<your-service>.onrender.com` (no trailing slash) |
    | `REACT_APP_PAYPAL_CLIENT_ID` | your PayPal sandbox/live client ID |
 4. Deploy. `client/vercel.json` rewrites all paths to `index.html`, so refreshing `/userdashboard` etc. works.
-   - Vercel sets `CI=true`, which makes CRA treat the project's existing ESLint warnings as errors. `vercel.json` overrides this with `CI=false`; once the warnings are fixed you can drop that.
+   - Vercel sets `CI=true`, which makes CRA treat ESLint warnings as errors. The project builds with zero warnings, so keep it that way: a new warning will fail the deploy.
    - `REACT_APP_*` values are baked in at build time. Changing them requires a redeploy.
 
 ## 4. Connect the two
