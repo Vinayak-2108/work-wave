@@ -1,5 +1,4 @@
 @import "./tokens.css";
-@import "./legacy.css";
 @import "./motion.css";
 
 @tailwind base;
@@ -7,6 +6,12 @@
 @tailwind utilities;
 
 @layer base {
+  /* Inherited size that ch-based measures (e.g. the Terms article) were built
+     against; carried over from the removed legacy.css body rule. */
+  body {
+    font-size: 1.29rem;
+  }
+
   :focus-visible {
     outline: 2px solid var(--focus, var(--action));
     outline-offset: 2px;

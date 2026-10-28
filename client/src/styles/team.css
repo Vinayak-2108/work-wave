@@ -56,3 +56,13 @@
 .teamBox-desc {
   position: relative;
 }
+
+.team-container {
+  min-height: max-content;
+}
+@media only screen and (max-width: 768px) {
+  .team-container {
+    min-height: max-content;
+    width: fit-content;
+  }
+}
