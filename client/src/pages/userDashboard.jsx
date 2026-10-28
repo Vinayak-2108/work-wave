@@ -51,7 +51,7 @@ function userIdFromToken(token) {
 const statusOf = (form) => (form.status ? form.status : "Pending");
 
 const rowClass =
-  "flex flex-col gap-2 border-b border-rule px-pad py-4 transition-colors duration-fast ease-out last:border-b-0 hover:bg-raised"; // taste-skill-ignore: list row divider
+  "motion-row flex flex-col gap-2 border-b border-rule px-pad py-4 transition-colors duration-fast ease-out last:border-b-0 hover:bg-raised"; // taste-skill-ignore: list row divider
 
 function Row({ form, onEdit, onDelete, onPay }) {
   const status = statusOf(form);
@@ -460,6 +460,8 @@ export default function DashboardUser() {
   const dismissNotice = useCallback(() => setNotice(null), []);
 
   const onSaved = useCallback((saved) => {
+    focusAfter.current = saved._id;
+    setFocusTick((t) => t + 1);
     setForms((prev) => prev.map((f) => (f._id === saved._id ? saved : f)));
     setEditing(null);
     setNotice({ kind: "success", text: "Request updated." });

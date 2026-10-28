@@ -63,11 +63,17 @@ export default function Home() {
           id="hero"
           className="flex min-h-[calc(100svh-56px)] flex-col justify-between bg-navy px-margin pb-10 pt-8 md:min-h-[calc(100svh-64px)] md:pb-10 md:pt-10"
         >
-          <h1 className="font-display text-[18.5vw] font-extrabold uppercase leading-[0.92] tracking-[-0.005em] md:text-[min(17vw,260px)]">
+          <Reveal
+            as="h1"
+            className="font-display text-[18.5vw] font-extrabold uppercase leading-[0.92] tracking-[-0.005em] md:text-[min(17vw,260px)]"
+          >
             <span className="block text-teal">Tech work,</span>
             <span className="block text-on-navy">on request.</span>
-          </h1>
-          <div className="mt-16 flex max-w-[80%] flex-col items-start gap-6 md:ml-auto md:mt-10 md:w-[40%] md:max-w-none lg:w-[28%] lg:min-w-[260px]">
+          </Reveal>
+          <Reveal
+            delay={150}
+            className="mt-16 flex max-w-[80%] flex-col items-start gap-6 md:ml-auto md:mt-10 md:w-[40%] md:max-w-none lg:w-[28%] lg:min-w-[260px]"
+          >
             <p className="text-lead text-on-navy-muted">
               Post a web, logo, content or marketing job with your budget. WorkWave reviews it, stamps it accepted and
               keeps you posted until you pay.
@@ -75,12 +81,13 @@ export default function Home() {
             <Button to="/signup" onDark arrow>
               Request a service
             </Button>
-          </div>
+          </Reveal>
         </section>
 
         <PosterList items={services} headingId="home-services" heading="Our five services" />
 
         <figure>
+          <Reveal scale>
           <img
             src={archive.presses.src}
             width={archive.presses.width}
@@ -90,12 +97,13 @@ export default function Home() {
             decoding="async"
             className="h-[56svh] w-full object-cover object-[50%_60%]"
           />
+          </Reveal>
           <figcaption className="bg-paper px-margin py-3 text-small text-muted">{archive.presses.caption}</figcaption>
         </figure>
 
         <section aria-labelledby="home-how" className="bg-navy px-margin py-section text-on-navy [--focus:var(--teal)]">
-          <div className="grid grid-cols-1 gap-x-gutter gap-y-12 lg:grid-cols-12 lg:grid-rows-[auto_1fr]">
-            <Reveal className="lg:col-span-5">
+          <div className="grid grid-cols-1 gap-x-gutter gap-y-12 md:grid-cols-12 md:grid-rows-[auto_1fr]">
+            <Reveal className="md:col-span-6 lg:col-span-5">
               <h2
                 id="home-how"
                 className="font-display text-head font-extrabold uppercase leading-[0.95] tracking-[-0.005em]"
@@ -107,10 +115,10 @@ export default function Home() {
                 anything is paid.
               </p>
             </Reveal>
-            <Reveal delay={120} className="lg:col-span-5 lg:col-start-7 lg:row-span-2">
+            <Reveal delay={120} className="md:col-span-6 md:col-start-7 md:row-span-2 lg:col-span-5">
               <JobSlip />
             </Reveal>
-            <Reveal delay={200} className="max-w-[440px] lg:col-span-5 lg:max-w-none lg:self-start">
+            <Reveal delay={200} className="max-w-[440px] md:col-span-6 md:max-w-none md:self-start lg:col-span-5">
               <RequestListFragment />
             </Reveal>
           </div>

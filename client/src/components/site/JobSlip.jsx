@@ -63,7 +63,7 @@ function ResultBar({ label, value }) {
   return (
     <p className="mt-6 flex items-center justify-between gap-4 bg-navy px-4 py-3 text-body text-on-navy">
       <span>{label}</span>
-      <span className="text-right font-semibold">{value}</span>
+      <span className="stamp text-right font-semibold">{value}</span>
     </p>
   );
 }
@@ -100,7 +100,14 @@ function JobSlip() {
       mounted.current = true;
       return;
     }
-    (flipped ? turnBackRef : turnOverRef).current?.focus();
+    const target = (flipped ? turnBackRef : turnOverRef).current;
+    if (!target) return undefined;
+    /* Focus now if the face is already visible, else once the next frame
+       has settled its visibility (a hidden element cannot take focus). */
+    target.focus();
+    if (document.activeElement === target) return undefined;
+    const raf = window.requestAnimationFrame(() => target.focus());
+    return () => window.cancelAnimationFrame(raf);
   }, [flipped]);
 
   const send = useCallback(() => {

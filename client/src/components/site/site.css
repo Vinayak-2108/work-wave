@@ -74,4 +74,79 @@
     transform: none;
     transition: none;
   }
+  /* The hidden faces keep a delayed visibility/collapse above; with no turn
+     to wait for, swap at once so focus() lands on a visible control. */
+  .slip-face,
+  .slip-front[data-hidden="true"],
+  .slip-back[data-hidden="true"] {
+    transition: none;
+  }
+  /* Descendants with their own `transition` would animate the inherited
+     visibility change and stay hidden for a frame; none of them may. */
+  .slip-face * {
+    transition-property: none !important;
+  }
+}
+
+/* Phase 7: load entrance, stamp and slow scale. All of it sits in
+   no-preference, so reduced motion shows the final state with no travel.
+   Without script none of the classes is ever added and everything shows. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes stamp {
+    from {
+      opacity: 0;
+      transform: scale(1.15);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes slow-scale {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.04);
+    }
+  }
+
+  /* Above the fold on arrival: plays once from CSS, `backwards` holds the
+     start state through the stagger delay. */
+  .reveal-load {
+    animation: rise var(--dur-enter) var(--ease-out) var(--reveal-delay, 0ms) backwards;
+  }
+
+  /* The status line is stamped when the slip comes into view, and again
+     when it is turned over to the receipt. */
+  .is-in .slip-front .stamp {
+    animation: stamp var(--dur) var(--ease-out) 450ms backwards;
+  }
+  .slip-back[data-hidden="false"] .stamp {
+    animation: stamp var(--dur) var(--ease-out) 350ms backwards;
+  }
+  .stamp {
+    display: inline-block;
+  }
+
+  /* One archival photograph drifts from 1 to 1.04 over 12s once it is seen. */
+  .slow-scale {
+    overflow: hidden;
+  }
+  .slow-scale > img {
+    animation: slow-scale 12s linear both paused;
+  }
+  .slow-scale.is-in > img {
+    animation-play-state: running;
+  }
 }

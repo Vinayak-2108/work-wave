@@ -42,7 +42,7 @@ function adminIdFromToken(token) {
 const isSmall = () =>
   typeof window !== "undefined" && window.matchMedia("(max-width: 1023.98px)").matches;
 
-const rowClass = "border-b border-rule last:border-b-0"; // taste-skill-ignore: list row divider
+const rowClass = "motion-row border-b border-rule last:border-b-0"; // taste-skill-ignore: list row divider
 
 function Row({ form, selected, onSelect }) {
   return (

@@ -52,14 +52,17 @@ export default function Services() {
       <main id="main">
         <section className="bg-paper px-margin pb-section pt-14 md:pt-20">
           <div className="grid grid-cols-1 gap-x-gutter gap-y-8 md:grid-cols-12 md:items-end">
-            <h1 className="font-display text-head font-extrabold uppercase leading-[0.95] tracking-[-0.005em] md:col-span-6">
+            <Reveal
+              as="h1"
+              className="font-display text-head font-extrabold uppercase leading-[0.95] tracking-[-0.005em] md:col-span-6"
+            >
               Our services
-            </h1>
-            <p className="max-w-[40ch] text-lead md:col-span-5 md:col-start-8">
+            </Reveal>
+            <Reveal as="p" delay={90} className="max-w-[40ch] text-lead md:col-span-5 md:col-start-8">
               All of our services hinge around one promise: brand awareness, traffic and leads, with content,
               marketing and sales working together. Small or large, your business gets strategic insight tailored
               to it and added value on top.
-            </p>
+            </Reveal>
           </div>
         </section>
 

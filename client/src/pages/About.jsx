@@ -23,9 +23,12 @@ export default function About() {
       <main id="main">
         <section className="bg-paper px-margin pt-14 md:pt-20">
           <div className="grid grid-cols-1 items-end gap-x-gutter gap-y-8 md:grid-cols-12">
-            <h1 className="font-display text-head font-extrabold uppercase leading-[0.95] tracking-[-0.005em] md:col-span-7">
+            <Reveal
+              as="h1"
+              className="font-display text-head font-extrabold uppercase leading-[0.95] tracking-[-0.005em] md:col-span-7"
+            >
               About us
-            </h1>
+            </Reveal>
             <img
               src={aboutus}
               width={435}

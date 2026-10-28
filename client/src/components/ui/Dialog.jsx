@@ -78,7 +78,7 @@ export default function Dialog({
       onMouseUp={onMouseUp}
       onClick={onBackdropClick}
       className={
-        "m-auto w-[min(560px,calc(100%-2*var(--margin,16px)))] max-w-none overflow-y-auto rounded-sheet " +
+        "motion-dialog m-auto w-[min(560px,calc(100%-2*var(--margin,16px)))] max-w-none overflow-y-auto rounded-sheet " +
         "border-0 bg-surface p-0 font-text text-ink shadow-dialog [.app_&]:text-text " +
         "max-sm:m-0 max-sm:h-full max-sm:max-h-none max-sm:w-full max-sm:rounded-none " +
         "backdrop:bg-[color-mix(in_srgb,var(--navy)_40%,transparent)] " +

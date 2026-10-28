@@ -25,7 +25,7 @@ export default function Notice({
   return (
     <div
       role={role}
-      className={`flex flex-wrap items-center gap-x-3 gap-y-1 font-text text-body [.app_&]:text-[14px] ${text} ${className}`.trim()}
+      className={`motion-notice flex flex-wrap items-center gap-x-3 gap-y-1 font-text text-body [.app_&]:text-[14px] ${text} ${className}`.trim()}
     >
       <Icon size={20} className="flex-none" />
       <p className="min-w-0 flex-1 font-semibold">{children}</p>

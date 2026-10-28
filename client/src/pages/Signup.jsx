@@ -10,6 +10,7 @@ import { login_admin, register_admin } from "../controllers/admin";
 import { login_user, register_user } from "../controllers/user";
 import { useAuth } from "../utils/useAuth";
 import { SLIP_KEY } from "../components/site/JobSlip";
+import Reveal from "../components/site/Reveal";
 
 const ROLES = [
   { value: "admin", label: "Admin" },
@@ -258,18 +259,18 @@ export default function Signup() {
         <div className="bg-paper px-margin pb-section pt-14 text-ink md:pt-20">
           <div className="grid w-full gap-x-6 lg:grid-cols-12">
             <div className="lg:col-span-6">
-            <h1 className="font-display text-head font-extrabold uppercase leading-[0.95] tracking-[-0.005em]">
+            <Reveal as="h1" className="font-display text-head font-extrabold uppercase leading-[0.95] tracking-[-0.005em]">
               {isLogin ? "Log in" : "Sign up"}
-            </h1>
-            <p className="mt-4 text-lead">
+            </Reveal>
+            <Reveal as="p" delay={75} className="mt-4 text-lead">
               {isLogin
                 ? "Log in to post a job, track its status and pay once it is accepted."
                 : "Create a WorkWave account to post a tech job with your own budget."}
-            </p>
-            <p className="mt-10 hidden max-w-[44ch] text-body lg:block">
+            </Reveal>
+            <Reveal as="p" delay={150} className="mt-10 hidden max-w-[44ch] text-body lg:block">
               Every request starts as Pending. One person at WorkWave reviews it and
               accepts or rejects it, and you pay through PayPal once it is accepted.
-            </p>
+            </Reveal>
             </div>
             <div className="lg:col-span-5 lg:col-start-8">
 
@@ -285,7 +286,7 @@ export default function Signup() {
               aria-hidden="true"
             />
 
-            <div
+            <Reveal
               role="group"
               aria-label="Choose sign up or log in"
               className="mt-8 flex lg:mt-0 gap-1 rounded-pill bg-surface p-1"
@@ -296,7 +297,7 @@ export default function Signup() {
               <button type="button" aria-pressed={isLogin} onClick={showLogin} className={tabClass(isLogin)}>
                 Log in
               </button>
-            </div>
+            </Reveal>
 
             <form
               method="POST"

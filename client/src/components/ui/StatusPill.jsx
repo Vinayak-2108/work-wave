@@ -21,7 +21,7 @@ function StatusPill({ status, className = "" }) {
   const text = key ? key.charAt(0).toUpperCase() + key.slice(1) : "";
   return (
     <span
-      className={`inline-flex h-5 flex-none items-center whitespace-nowrap rounded-pill border px-2 font-text text-xs font-medium leading-none ${tone} ${className}`.trim()}
+      className={`inline-flex h-5 flex-none items-center whitespace-nowrap rounded-pill border px-2 font-text text-xs font-medium leading-none motion-safe:transition-[background-color,color,border-color] motion-safe:duration-base ease-out ${tone} ${className}`.trim()}
     >
       {text}
     </span>

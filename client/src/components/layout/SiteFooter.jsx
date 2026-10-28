@@ -2,6 +2,7 @@ import { memo } from "react";
 import { Link } from "react-router-dom";
 import { EnvelopeIcon } from "../ui";
 import logo from "../../assets/logo.png";
+import Reveal from "../site/Reveal";
 
 /*
  * Marketing footer: compact navy field. Left: small logo on a paper chip
@@ -34,16 +35,16 @@ function SiteFooter({ credits = [] }) {
   return (
     <footer className="site bg-navy px-margin pb-6 pt-14 text-on-navy [--focus:var(--teal)]">
       <div className="grid grid-cols-1 gap-x-gutter gap-y-10 md:grid-cols-2 lg:grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))]">
-        <div>
+        <Reveal>
           <Link to="/" className="inline-block rounded-input bg-paper px-3 py-2" aria-label="WorkWave home">
             <img src={logo} alt="" className="h-8 w-auto" />
           </Link>
           <p className="mt-4 max-w-[28ch] text-body text-on-navy-muted">
             One stop interface connecting clients and technical experts.
           </p>
-        </div>
+        </Reveal>
 
-        <section aria-labelledby="footer-pages">
+        <Reveal as="section" delay={75} aria-labelledby="footer-pages">
           <h2 id="footer-pages" className={heading}>Pages</h2>
           <ul className="flex flex-col gap-1">
             {pages.map((p) => (
@@ -52,9 +53,9 @@ function SiteFooter({ credits = [] }) {
               </li>
             ))}
           </ul>
-        </section>
+        </Reveal>
 
-        <section aria-labelledby="footer-services">
+        <Reveal as="section" delay={150} aria-labelledby="footer-services">
           <h2 id="footer-services" className={heading}>Services</h2>
           <ul className="flex flex-col gap-1">
             {services.map((s) => (
@@ -63,9 +64,9 @@ function SiteFooter({ credits = [] }) {
               </li>
             ))}
           </ul>
-        </section>
+        </Reveal>
 
-        <section aria-labelledby="footer-contact">
+        <Reveal as="section" delay={225} aria-labelledby="footer-contact">
           <h2 id="footer-contact" className={heading}>Contact</h2>
           <ul className="flex flex-col gap-1">
             <li>
@@ -75,10 +76,10 @@ function SiteFooter({ credits = [] }) {
               </a>
             </li>
           </ul>
-        </section>
+        </Reveal>
 
         {credits.length > 0 ? (
-          <section aria-labelledby="footer-credits">
+          <Reveal as="section" delay={300} aria-labelledby="footer-credits">
             <h2 id="footer-credits" className={heading}>Credits</h2>
             <ul className="flex flex-col gap-1">
               {credits.map((c) => (
@@ -87,7 +88,7 @@ function SiteFooter({ credits = [] }) {
                 </li>
               ))}
             </ul>
-          </section>
+          </Reveal>
         ) : null}
       </div>
 
