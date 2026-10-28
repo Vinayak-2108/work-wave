@@ -1,4 +1,4 @@
-const base = "http://localhost:5000";
+const base = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 export const register_admin = async (obj) => {
   const res = await fetch(`${base}/api/admin/signup`, {

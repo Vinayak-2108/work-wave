@@ -2,26 +2,36 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cors=require("cors");
-const stripe = require('stripe')('sk_test_51McoGoSBTsTb4qbmPPogsJghMKYqj9cgUO24LvRHqioPBeKBEjFVLKomFXSzm77ZbplU58DUoeaZMJmkYG86DnDY00yGVYh28f');
 
 const dotenv = require("dotenv");
 
 dotenv.config();
+const stripe = require('stripe')(process.env.STRIPE_KEY);
 const userRoutes = require("./routes/userRoutes")
 const adminRoutes = require("./routes/adminRoutes")
 mongoose.set('strictQuery', true);
 
-try {
-  mongoose.connect(process.env.MONGO_URI);  
-  console.log("DB Connected");
-} catch (err) {
-  console.log(err);
-}
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("DB Connected"))
+  .catch((err) => console.log(err));
 
-app.use(cors());
+// CLIENT_URL may hold several comma-separated origins (e.g. prod + preview)
+const allowedOrigins = (process.env.CLIENT_URL || "http://localhost:3000")
+  .split(",")
+  .map((origin) => origin.trim());
+
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
-const YOUR_DOMAIN = 'http://localhost:5000'
+app.get("/health", (req, res) => {
+  res.json({
+    status: "ok",
+    db: mongoose.connection.readyState === 1 ? "connected" : "disconnected",
+  });
+});
+
+const YOUR_DOMAIN = process.env.DOMAIN_URL;
 
 app.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
@@ -32,7 +42,7 @@ app.post('/create-checkout-session', async (req, res) => {
       },
     ],
     mode: 'payment',
-    success_url: `http://localhost:5000/`,
+    success_url: `${YOUR_DOMAIN}?success=true`,
     cancel_url: `${YOUR_DOMAIN}?canceled=true`,
   });
 
@@ -42,6 +52,8 @@ app.post('/create-checkout-session', async (req, res) => {
 app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);
 
-app.listen(5000, () => {
-  console.log("Backend Server running ");
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Backend Server running on port ${PORT}`);
 });

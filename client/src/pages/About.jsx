@@ -18,7 +18,7 @@ export default function About() {
           <img className="m-5 rounded-md w-1/4" src={aboutus} alt="" />
           <div className="about-text rounded-lg w-3/4 mt-4">
             <p className="text-3xl m-2 p-2">
-              ETWOT is a one roof solution for your technical requirements. We
+              WorkWave is a one roof solution for your technical requirements. We
               have a methodical team which caters all your needs form web
               development to logo designing and will also support you throughout
               with digital marketing and much more. us our team of technical

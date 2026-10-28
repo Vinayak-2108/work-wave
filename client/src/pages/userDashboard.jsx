@@ -128,7 +128,7 @@ const onError = (data, actions) => {
     <>
       <Navbar />
 
-      <PayPalScriptProvider options={{ "client-id": 'AZjE_nJBZmhF4ydNErXnjnWrOScZ6LEj4jxvRLJiQxtyNZRerDQ6XL0NxYuCb1Vjta99AO623GyVyx1y' }}>
+      <PayPalScriptProvider options={{ "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID }}>
       <div className="dashbg p-16 flex flex-col items-center">
         {/* <img className="imgabout" src={about1} /> */}
         <div className="userdetails bg-[#e6e6e6] w-3/5 rounded-lg shadow-2xl p-16 mt-20 flex justify-between items-center">
