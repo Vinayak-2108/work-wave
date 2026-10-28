@@ -1,7 +1,7 @@
-import { memo, useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useId, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Field } from "../ui";
-import { useAuth } from "../../utils/useAuth";
+import { useRequestTarget } from "../../utils/useRequestTarget";
 import "./site.css";
 
 /*
@@ -10,12 +10,7 @@ import "./site.css";
  * slip fills in. "Send this request" saves {service, budget} under
  * sessionStorage key "workwave.slip" (read by Request a service in Phase 6)
  * and goes to /requestservice when a client is signed in, else /signup.
- * "Turn over" flips to the receipt side (click, Enter or Space). Only the
- * visible face is in the accessibility tree, because the hidden face holds
- * focusable controls. Reduced motion swaps the faces without rotation.
- * After a flip, focus moves to the toggle on the face now showing, and the
- * hidden face collapses to zero height once the turn ends, so the stage is
- * only as tall as the face you are looking at.
+ * The slip has one face only, so its height never changes.
  * The stage sits in a rounded-card frame on navy-raised (landing redesign).
  * State stays in this component: no page reloads, no network.
  */
@@ -73,9 +68,8 @@ function JobSlip() {
   const [service, setService] = useState("Web Development");
   const [budget, setBudget] = useState("");
   const [touched, setTouched] = useState(false);
-  const [flipped, setFlipped] = useState(false);
   const navigate = useNavigate();
-  const { role } = useAuth();
+  const target = useRequestTarget();
   const groupId = useId();
 
   const valid = useMemo(() => /^[1-9]\d{0,8}$/.test(budget), [budget]);
@@ -90,26 +84,6 @@ function JobSlip() {
     setBudget(e.target.value.trim());
   }, []);
   const onService = useCallback((e) => setService(e.target.value), []);
-  const turn = useCallback(() => setFlipped((v) => !v), []);
-  const turnOverRef = useRef(null);
-  const turnBackRef = useRef(null);
-  const mounted = useRef(false);
-
-  /* After a flip, hand focus to the toggle on the face that just appeared. */
-  useEffect(() => {
-    if (!mounted.current) {
-      mounted.current = true;
-      return;
-    }
-    const target = (flipped ? turnBackRef : turnOverRef).current;
-    if (!target) return undefined;
-    /* Focus now if the face is already visible, else once the next frame
-       has settled its visibility (a hidden element cannot take focus). */
-    target.focus();
-    if (document.activeElement === target) return undefined;
-    const raf = window.requestAnimationFrame(() => target.focus());
-    return () => window.cancelAnimationFrame(raf);
-  }, [flipped]);
 
   const send = useCallback(() => {
     if (!valid) return;
@@ -118,13 +92,13 @@ function JobSlip() {
     } catch (e) {
       /* storage unavailable: the form simply opens empty */
     }
-    navigate(role === "user" ? "/requestservice" : "/signup");
-  }, [valid, service, budget, role, navigate]);
+    navigate(target);
+  }, [valid, service, budget, target, navigate]);
 
   return (
     <div className="rounded-card bg-navy-raised p-4 md:p-8">
     <div className="slip-stage mx-auto w-full max-w-[440px] text-ink" style={{ clipPath: clip }}>
-      <div className="slip-face slip-front bg-paper px-6 pb-12 pt-6" data-hidden={flipped}>
+      <div className="slip-front bg-paper px-6 pb-12 pt-6">
         <p className="text-lead font-semibold">Job slip</p>
 
         <fieldset className="mt-5">
@@ -141,11 +115,11 @@ function JobSlip() {
                     value={s}
                     checked={service === s}
                     onChange={onService}
-                    className="peer absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                    className="peer absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0"
                   />
                   <label
                     htmlFor={id}
-                    className="inline-flex h-11 cursor-pointer items-center rounded-pill bg-surface px-4 text-body font-semibold text-ink transition-[background-color,color,transform] duration-fast ease-out peer-checked:bg-navy peer-checked:text-on-navy peer-hover:bg-active peer-checked:peer-hover:bg-action peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-action peer-active:translate-y-px"
+                    className="pointer-events-none inline-flex h-11 cursor-pointer items-center rounded-pill bg-surface px-4 text-body font-semibold text-ink transition-[background-color,color,transform] duration-fast ease-out peer-checked:bg-navy peer-checked:text-on-navy peer-hover:bg-card-tint peer-checked:peer-hover:bg-action peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-action peer-active:translate-y-px"
                   >
                     {s}
                   </label>
@@ -190,27 +164,6 @@ function JobSlip() {
             disabledReason="Enter a budget to send."
           >
             Send this request
-          </Button>
-          <Button variant="text" onClick={turn} ref={turnOverRef}>
-            Turn over
-          </Button>
-        </div>
-      </div>
-
-      <div className="slip-face slip-back bg-paper px-6 pb-12 pt-6" data-hidden={!flipped}>
-        <p className="text-lead font-semibold">Receipt</p>
-        <Group title="This job">
-          <Row label="Service" value={service} />
-          <Row label="Budget" value={shown} />
-          <Row label="Paid with" value="PayPal" />
-        </Group>
-        <ResultBar label="Status" value="Accepted" />
-        <p className="mt-4 text-body">
-          After a person accepts your request, the receipt looks like this.
-        </p>
-        <div className="mt-6">
-          <Button variant="secondary" onClick={turn} ref={turnBackRef}>
-            Turn back
           </Button>
         </div>
       </div>

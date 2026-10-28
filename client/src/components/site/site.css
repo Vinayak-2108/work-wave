@@ -1,6 +1,6 @@
 /*
  * Marketing set pieces (Phase 4). Only what Tailwind utilities can't say:
- * entrance state, slip faces, and the reduced-motion fallback. Tokens only.
+ * entrance state, the slip stamp, and the reduced-motion fallback. Tokens only.
  */
 
 /* Entrances: visible without script; the class is added only to elements
@@ -17,74 +17,12 @@
     transform var(--dur-enter) var(--ease-out) var(--reveal-delay, 0ms);
 }
 
-/* Slip: two faces share one grid cell; the hidden one leaves the tree. */
-.slip-stage {
-  display: grid;
-  perspective: 1600px;
-}
-.slip-face {
-  grid-area: 1 / 1;
-  backface-visibility: hidden;
-  visibility: visible;
-  max-height: 9999px;
-  transition: transform var(--dur-enter) var(--ease-out);
-}
-.slip-face[data-hidden="true"] {
-  max-height: 0;
-  overflow: hidden;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-.slip-front[data-hidden="true"] {
-  transform: rotateY(180deg);
-  visibility: hidden;
-  transition:
-    transform var(--dur-enter) var(--ease-out),
-    visibility 0s linear var(--dur),
-    max-height 0s linear var(--dur),
-    padding-top 0s linear var(--dur),
-    padding-bottom 0s linear var(--dur);
-}
-.slip-back {
-  transform: rotateY(-180deg);
-}
-.slip-back[data-hidden="false"] {
-  transform: none;
-}
-.slip-back[data-hidden="true"] {
-  visibility: hidden;
-  transition:
-    transform var(--dur-enter) var(--ease-out),
-    visibility 0s linear var(--dur),
-    max-height 0s linear var(--dur),
-    padding-top 0s linear var(--dur),
-    padding-bottom 0s linear var(--dur);
-}
-
 @media (prefers-reduced-motion: reduce) {
   .reveal-pending,
   .reveal-pending.is-in {
     opacity: 1;
     transform: none;
     transition: none;
-  }
-  .slip-front[data-hidden="true"],
-  .slip-back,
-  .slip-back[data-hidden="false"] {
-    transform: none;
-    transition: none;
-  }
-  /* The hidden faces keep a delayed visibility/collapse above; with no turn
-     to wait for, swap at once so focus() lands on a visible control. */
-  .slip-face,
-  .slip-front[data-hidden="true"],
-  .slip-back[data-hidden="true"] {
-    transition: none;
-  }
-  /* Descendants with their own `transition` would animate the inherited
-     visibility change and stay hidden for a frame; none of them may. */
-  .slip-face * {
-    transition-property: none !important;
   }
 }
 
@@ -127,13 +65,9 @@
     animation: rise var(--dur-enter) var(--ease-out) var(--reveal-delay, 0ms) backwards;
   }
 
-  /* The status line is stamped when the slip comes into view, and again
-     when it is turned over to the receipt. */
+  /* The status line is stamped when the slip comes into view. */
   .is-in .slip-front .stamp {
     animation: stamp var(--dur) var(--ease-out) 450ms backwards;
-  }
-  .slip-back[data-hidden="false"] .stamp {
-    animation: stamp var(--dur) var(--ease-out) 350ms backwards;
   }
   .stamp {
     display: inline-block;
