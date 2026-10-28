@@ -33,7 +33,7 @@ const heading = "mb-3 text-body font-semibold text-on-navy-muted";
 function SiteFooter({ credits = [] }) {
   return (
     <footer className="site bg-navy px-margin pb-6 pt-14 text-on-navy [--focus:var(--teal)]">
-      <div className="grid grid-cols-1 gap-x-gutter gap-y-10 md:grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))]">
+      <div className="grid grid-cols-1 gap-x-gutter gap-y-10 md:grid-cols-2 lg:grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))]">
         <div>
           <Link to="/" className="inline-block rounded-input bg-paper px-3 py-2" aria-label="WorkWave home">
             <img src={logo} alt="" className="h-8 w-auto" />
@@ -91,7 +91,7 @@ function SiteFooter({ credits = [] }) {
         ) : null}
       </div>
 
-      <p className="mt-10 border-t border-on-navy-muted/30 pt-6 text-small text-on-navy-muted">
+      <p className="mt-12 text-small text-on-navy-muted">
         Copyright &copy; {new Date().getFullYear()} WorkWave. All rights reserved.
       </p>
     </footer>

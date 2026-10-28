@@ -9,58 +9,6 @@ body {
 .emph {
   font-family: "Prompt", sans-serif;
 }
-#hero {
-  background-image: url(../../src/assets/bg.svg);
-  background-color: #c6c7c7;
-  transition: ease-in-out 1s;
-}
-.aboutbg {
-  background-image: url(../assets/about1.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.about-text {
-  background-color: rgba(30, 29, 29, 0.4);
-  backdrop-filter: blur(10px);
-}
-
-.hometext {
-  background-color: rgba(0, 0, 0, 0.35);
-  border-radius: 10px;
-}
-
-.hometext p {
-  margin: 2rem;
-  color: white;
-  /* white-space: nowrap; */
-  overflow: hidden;
-  /* width: 20em; */
-  font-size: 2.5rem;
-  /* animation: type 4s steps(60, end);  */
-}
-
-.hometext h1:nth-child(2) {
-  animation: type2 8s steps(60, end);
-}
-
-@keyframes type {
-  from {
-    width: 0;
-  }
-}
-
-@keyframes type2 {
-  0% {
-    width: 0;
-  }
-  50% {
-    width: 0;
-  }
-  100% {
-    width: 100;
-  }
-}
-
 @keyframes blink {
   to {
     opacity: 0;
@@ -114,17 +62,6 @@ body {
   background-color: rgba(255, 0, 0, 0.974);
 }
 
-.servicesbg {
-  background-image: url(../assets/about1.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.services {
-  text-align: center;
-  justify-content: center;
-}
-
 .education {
   --bg-color: #000c66;
   --bg-color-light: #ffeeba;
@@ -153,10 +90,6 @@ body {
     0 24px 46px var(--box-shadow-color);
 }
 
-.services:hover .cardtemp:not(:hover) {
-  filter: blur(10px);
-}
-
 .card:hover p {
   color: white;
 }
@@ -178,20 +111,6 @@ body {
   transition: color 0.3s ease-out;
 }
 
-.policy {
-  background-color: rgba(220, 198, 198, 0.4);
-  /* border: 5px red solid; */
-  box-shadow: 5px 20px 50px #000;
-  backdrop-filter: blur(10px);
-}
-
-.policybg {
-  background-image: url(../assets/about1.svg);
-  background-repeat: no-repeat;
-  background-size:cover;
-  /* object-fit:; */
-}
-
 .team-container {
   min-height: max-content;
 }
@@ -199,9 +118,6 @@ body {
   .team-container {
     min-height: max-content;
     width: fit-content;
-  }
-  .policybg{
-    height: 100vh;
   }
 }
 @media (min-width: 800px){

@@ -135,7 +135,8 @@ Five sizes on any marketing page, no more. Uppercase only in Big Shoulders. Body
 - **App:** `--pad: 24px` inside the sheet, `--gap: 16px` between panels, `--card-pad: 20px`, `--row-height: 56px` (sparse density), `--control-height: 36px` (44px under 640px).
 
 ### 2.5 Shape, borders, depth
-- **Buttons and controls:** full pill (`999px`) everywhere, marketing and app. This continues the existing Signup pill. Decided once.
+- **Buttons, tabs and the segmented control:** full pill (`999px`), marketing and app. This continues the existing Signup pill. Decided once.
+- **Form fields:** marketing fields (Field on `.site`) have a `10px` radius, the same as app inputs. Dialog and slip-like panels use `--radius-sheet` (16px) and `--radius-panel` (10px) on both scopes.
 - **Slip:** square top corners, a zigzag bottom edge cut with `clip-path`.
 - **App sheet:** `16px` radius, 1px `--border`, inset 8px from the right and bottom of the window. Nested radii step down: panels `10px`, inputs `10px`, pills `999px`.
 - **Images:** square corners.
@@ -148,7 +149,7 @@ Five sizes on any marketing page, no more. Uppercase only in Big Shoulders. Body
 Tailwind defaults restored: `sm 640`, `md 768`, `lg 1024`, `xl 1280`, `2xl 1536`. The current `sm: 320px` override is deleted. Inspection widths: 390, 768, 1440.
 
 ### 2.7 Focus and states
-- Focus ring on every interactive element: `outline: 2px solid var(--focus); outline-offset: 2px`, with `--focus` = `--teal` on navy and teal fields, `--action` on paper, `--accent` in the app. Shown with `:focus-visible` only.
+- Focus ring on every interactive element: `outline: 2px solid var(--focus); outline-offset: 2px`, with `--focus` = `--teal` on navy fields, `--on-teal` (navy) on teal fields, `--action` on paper, `--accent` in the app. Button's `onDark` gives the teal ring; `onTeal` gives the navy ring and navy labels on secondary and text variants. Shown with `:focus-visible` only.
 - Hover raises contrast, never lowers it: ink to accent swaps on links in the poster list; buttons go one step darker (`#000C66` → `#080041`).
 - Pressed: `transform: translateY(1px)`.
 - Disabled: legible (4.5:1) with the reason in words beside it, never 30% opacity.
@@ -172,7 +173,7 @@ New shared components live in `client/src/components/ui/`, layout in `client/src
 | Component | Spec | States | Replaces |
 |---|---|---|---|
 | **SiteHeader** | Paper bar, 64px (56px phone). Logo PNG left at 32px tall with `alt="WorkWave"`, linked to `/`. Right: Home, About, Services, Terms, then Signup as a pill button, or Dashboard and Logout when a token exists. Phone: a 44px "Menu" button opens a full-width paper sheet with the same links at body size (`--shadow-menu`). Not sticky on marketing pages **(rev: no floating or glass bar)** | Current page link gets a 3px navy underline. Focus ring. Menu open/closed with `aria-expanded`, Escape closes | `header.jsx`, `navbar.jsx`, `Navbar2.jsx`, `MenuItems.jsx` |
-| **SiteFooter** | Navy field, `min-height: 100svh` on marketing pages. Top row: four plain lists (Pages, Services, Contact, Credits) at body size. Bottom row: the "WORKWAVE" wordmark in Big Shoulders spanning margin to margin, then the legal line at small size. Sticky reveal under the last section | Link hover to teal | `Footer.jsx` |
+| **SiteFooter** | Compact navy field (user decision: no giant wordmark). Left: small logo on a paper chip and a one-line description. Right: plain lists (Pages, Services, Contact, Credits) at body size. Bottom: legal line at small size | Link hover to teal | `Footer.jsx` |
 | **AppShell** | Tinted L-frame: 228px sidebar (wordmark, "Requests", "Request a service" for clients; "Queue" for admins) and a 48px top bar (Home, About, Services, Terms, account name, Logout). The white sheet holds the page. Phone: frame collapses, 48px top bar with Menu, title, one action | Active nav item `--active` fill | The marketing header and footer on dashboard routes |
 | **Button** | Pill. `primary` (navy fill, white label), `secondary` (paper or white fill, 2px navy border), `text`. Marketing 48px tall, app 36px (44px on phone). Renders `<Link>` when given `to` | hover, focus, pressed, loading (label stays, spinner replaces arrow, `aria-busy`), disabled with reason | `.serveButton`, ad-hoc `bg-[#000cc9]` buttons |
 | **Field** | Label above (14/600 app, body/600 site), 8px gap, then input, select or textarea. Marketing: filled `--surface` (white on paper), no border, 2px focus outline. App: white, 1px `--control` border, radius 10, 40px tall. Hint and error below, tied with `aria-describedby`. **Passes `name` and `id` through unchanged** | focus, error (negative text plus an icon; the message says how to fix it), disabled | Placeholder-only inputs on Signup and RequestService |

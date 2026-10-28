@@ -3,16 +3,13 @@ import "../styles/team.css";
 const Team = (props) => {
   return (
     <>
-      <div class="team-container m-5 w-auto md:w-1/5">
-        <div class="row vh-100">
-          <div class="col-sm-6 col-lg-3 my-auto">
-            <div class="teamBox shadow-sm p-4">
-              <div class="image-wrapper mb-3">
-                <img class="img-fluid h-44" src={props.img} alt="..." />
-              </div>
-              <div class="teamBox-desc">
-                <h5>{props.title}</h5>
-                <p>{props.body}</p>
+      <div className="team-container m-5 w-auto md:w-1/5">
+        <div className="row">
+          <div className="col-sm-6 col-lg-3 my-auto">
+            <div className="teamBox p-4">
+              <div className="teamBox-desc">
+                <h5>{props.title ?? props.name}</h5>
+                <p>{props.body ?? props.role}</p>
               </div>
             </div>
           </div>

@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SiteHeader from "../components/layout/SiteHeader";
 import SiteFooter from "../components/layout/SiteFooter";
 import TeamCard from "../components/TeamCard";
-import about1 from "../assets/about1.svg";
 
 export default function Team() {
+  useEffect(() => {
+    document.title = "Our Team · WorkWave";
+  }, []);
+
   return (
     <div className="site">
       <SiteHeader />
       <main id="main">
-      <img className="imgabout" src={about1} />
-      <div className="title text-left absolute top-32 m-5 p-5 left-20 font-semibold text-white">
-        <h2 className="text-5xl m-5 p-5">Our Team</h2>
-        <p className="team-info text-3xl m-5 p-5">
+      <div className="bg-paper px-margin pb-section pt-14 text-ink md:pt-20">
+        <h1 className="font-display text-head font-extrabold uppercase leading-[0.95] tracking-[-0.005em]">Our Team</h1>
+        <p className="mt-6 max-w-[60ch] text-lead">
           All of our services hinge around our promise of delivering brand
           awareness, traffic and leads by bringing content, marketing and sales
           together. Each of our Business Hubs feed into whichever digital
@@ -22,7 +24,7 @@ export default function Team() {
           which everything else revolves.
         </p>
       </div>
-      <div className="flex flex-wrap w-full h-full justify-center items-center">
+      <div className="flex flex-wrap w-full justify-center items-center bg-paper px-margin pb-section">
         <TeamCard name="Rangaade Patle" role="bknd" />
         <TeamCard name="Rangaade Patle" role="bknd" />
         <TeamCard name="Rangaade Patle" role="bknd" />
