@@ -136,3 +136,32 @@ node "C:/Users/vinay/AppData/Local/Temp/claude/C--Users-vinay-Documents-projects
 ```
   Then diff the output against `.taste-skill/before/inventory.json`. The only expected differences are the earlier approved A1 to A4 link fixes already on the branch.
 - **No dependency changes:** `git diff --stat -- client/package.json client/package-lock.json` must be empty.
+
+## Milestone C: navigation and shell fixes (owner review, 2026-10-29)
+Bugs the owner found while reviewing, with causes measured by the main session at 1440 px.
+
+1. **Header shifts when opening a dashboard.**
+   - Marketing pages show a 15px vertical scrollbar; the shorter dashboards show none, so the whole header moves 15px.
+   - Also, the header's Logout `Button` is 114×48 on marketing pages but 81×36 on dashboards, because `Button` applies `[.app_&]:h-control-height` and 14px text to anything inside `.app`.
+   - **Fix:**
+     - Reserve the scrollbar gutter on every page (`html { scrollbar-gutter: stable; }` in `client/src/styles/index.css` base layer).
+     - Make app-sized buttons apply only to buttons that are not inside the `.site` header, so the header renders identically everywhere.
+   - **Acceptance:** every header element has the same x, y, width and height on `/`, `/services`, `/userdashboard`, `/requestservice` and `/admindashboard` at 1440, 768 and 390, signed in.
+2. **No footer on dashboards.** Render `SiteFooter` at the bottom of `AppShell`, after the sheet, identical to the marketing footer. This reverses approved item A5 at the owner's request.
+3. **Navigation keeps the old scroll position, and hash links don't land on their section.**
+   - Add one scroll manager inside `BrowserRouter` in `client/src/utils/Router.js`; route paths are unchanged.
+     - On every `pathname` change with no hash, scroll to the top.
+     - With a hash, scroll the matching element into view once it exists (it may render after a `Reveal`), clearing the header.
+     - Honour `prefers-reduced-motion` (instant scroll).
+     - Don't break the admin dashboard's own scroll restore in `adminDashboard.jsx`.
+   - Give the five Services sections `scroll-margin-top` so their headings aren't hidden.
+4. **Service links go to the top of Services.** Bento cards and the footer's service links go to `/services#svc-marketing`, `#svc-content`, `#svc-logo`, `#svc-web` and `#svc-graphic`, matching the existing ids.
+5. **"Request a service" ignores login.**
+   - Every request call to action (Home hero and how-it-works buttons, `CtaBand`, the five Services "Request this service" links) goes to:
+     - `/requestservice` for a signed-in client
+     - `/admindashboard` for a signed-in admin
+     - `/signup` for guests
+   - Use `useAuth()`. The header's own Signup button is unchanged.
+   - From a Services section, the request form may preselect that service through the existing `workwave.slip` sessionStorage draft, only if that needs no change to the form's field names.
+
+Files in scope: `client/src/styles/index.css`, `client/src/components/ui/Button.jsx`, `client/src/components/layout/AppShell.jsx`, `client/src/components/layout/SiteFooter.jsx`, `client/src/utils/Router.js` (no path changes), one new `client/src/utils/ScrollManager.jsx`, `client/src/components/site/ServiceBento.jsx`, `client/src/components/site/CtaBand.jsx`, `client/src/pages/Home.jsx`, `client/src/pages/Services.jsx`. `SiteHeader.jsx` only if strictly needed.
