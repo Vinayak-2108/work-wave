@@ -1,0 +1,39 @@
+/* Scopes react-phone-number-input to look like a Field on the Signup page. */
+.auth-phone .PhoneInput {
+  --PhoneInput-color--focus: var(--action);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 16px;
+  background: var(--surface);
+  border: 2px solid transparent;
+  border-radius: var(--radius-input);
+  color: var(--ink);
+  font: inherit;
+}
+.auth-phone .PhoneInput:focus-within {
+  outline: 2px solid var(--focus, var(--action));
+  outline-offset: 2px;
+}
+.auth-phone .PhoneInput[data-invalid="true"],
+.auth-phone .PhoneInput:has(input[aria-invalid="true"]) {
+  border-color: var(--negative);
+}
+.auth-phone .PhoneInputInput {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+.auth-phone .PhoneInputInput::placeholder {
+  color: var(--muted);
+}
+.auth-phone .PhoneInputCountrySelect:focus + .PhoneInputCountryIcon,
+.auth-phone .PhoneInputCountrySelect:focus + .PhoneInputCountryIcon + .PhoneInputCountrySelectArrow {
+  color: var(--action);
+}

@@ -25,10 +25,10 @@ export default function Team() {
         </p>
       </div>
       <div className="flex flex-wrap w-full justify-center items-center bg-paper px-margin pb-section">
-        <TeamCard name="Rangaade Patle" role="bknd" />
-        <TeamCard name="Rangaade Patle" role="bknd" />
-        <TeamCard name="Rangaade Patle" role="bknd" />
-        <TeamCard name="Rangaade Patle" role="bknd" />
+        <TeamCard name="John Doe" role="Backend" />
+        <TeamCard name="John Doe" role="Backend" />
+        <TeamCard name="John Doe" role="Backend" />
+        <TeamCard name="John Doe" role="Backend" />
       </div>
       </main>
       <SiteFooter />
