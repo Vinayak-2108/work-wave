@@ -11,11 +11,13 @@ import UserDashboard from "../pages/userDashboard";
 import AdminDashboard from "../pages/adminDashboard";
 import RequestService from "../pages/RequestService";
 import RequireAuth from "./RequireAuth";
+import ScrollManager from "./ScrollManager";
 
 export default function Router() {
   return (
     <>
       <BrowserRouter>
+        <ScrollManager />
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/about" element={<About />} />

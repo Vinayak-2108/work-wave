@@ -11,7 +11,8 @@ import { useAuth } from "../../utils/useAuth";
  * only the dashboard path differs). Every control is a real <a> or <button>.
  * Phone: a 44px Menu button toggles the same list as a full-width sheet
  * (aria-expanded, Escape closes and returns focus to the button, the sheet
- * closes on navigation). Logout updates auth state; it does not reload.
+ * closes on navigation). Font size is pinned to the body size so the header
+ * is identical inside the 14px .app root. Logout updates auth state; it does not reload.
  */
 const links = [
   { to: "/", label: "Home", end: true },
@@ -66,7 +67,7 @@ function SiteHeader() {
   return (
     <header
       onKeyDown={onKeyDown}
-      className="site relative z-20 bg-paper text-ink"
+      className="site relative z-20 bg-paper text-[1.29rem] text-ink"
     >
       <a
         href="#main"

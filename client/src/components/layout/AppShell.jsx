@@ -1,13 +1,14 @@
 import { memo } from "react";
 import { NavLink } from "react-router-dom";
 import SiteHeader from "./SiteHeader";
+import SiteFooter from "./SiteFooter";
 import { useAuth } from "../../utils/useAuth";
 
 /*
  * Dashboard frame (Milestone B): the shared SiteHeader on top, then a
  * sub-nav strip on `frame` (role tabs, 2px accent underline on the active
  * tab, account name at the right, the page's `action` node on phones), then
- * the white sheet. No sidebar, no second Logout, no second phone menu.
+ * the white sheet, then the marketing SiteFooter (Milestone C). No sidebar, no second Logout, no second phone menu.
  * Props: title (unused visually, pages carry their own h1), action (phone
  * strip node), accountName (optional, shown from md).
  * The header root carries `.site`; the `.app` class stays on this shell so the
@@ -59,6 +60,8 @@ function AppShell({ children, action, accountName }) {
       >
         {children}
       </main>
+
+      <SiteFooter />
     </div>
   );
 }

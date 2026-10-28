@@ -6,6 +6,11 @@
 @tailwind utilities;
 
 @layer base {
+  /* Reserve the scrollbar track so pages with and without one align. */
+  html {
+    scrollbar-gutter: stable;
+  }
+
   /* Inherited size that ch-based measures (e.g. the Terms article) were built
      against; carried over from the removed legacy.css body rule. */
   body {

@@ -9,6 +9,7 @@ import DashboardShowcase from "../components/site/DashboardShowcase";
 import Faq from "../components/site/Faq";
 import CtaBand from "../components/site/CtaBand";
 import Reveal from "../components/site/Reveal";
+import { useRequestTarget } from "../utils/useRequestTarget";
 
 const steps = [
   "Choose the service",
@@ -18,6 +19,7 @@ const steps = [
 ];
 
 export default function Home() {
+  const requestTo = useRequestTarget();
   useEffect(() => {
     document.title = "WorkWave · Tech work on request";
   }, []);
@@ -44,7 +46,7 @@ export default function Home() {
                 then you pay.
               </Reveal>
               <Reveal delay={150} className="mt-8 flex flex-wrap items-center gap-3">
-                <Button to="/signup" onDark arrow>
+                <Button to={requestTo} onDark arrow>
                   Request a service
                 </Button>
                 <Button to="/services" variant="secondary" onDark>
@@ -87,7 +89,7 @@ export default function Home() {
                 ))}
               </Reveal>
               <Reveal delay={150} className="mt-8">
-                <Button to="/signup" onDark arrow>
+                <Button to={requestTo} onDark arrow>
                   Request a service
                 </Button>
               </Reveal>

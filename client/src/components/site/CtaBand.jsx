@@ -1,14 +1,16 @@
 import { memo } from "react";
 import { Button } from "../ui";
 import Reveal from "./Reveal";
+import { useRequestTarget } from "../../utils/useRequestTarget";
 
 /*
  * Closing call to action: a teal rounded panel inside the page margins, on
  * the paper ground. The heading and sentence are text; only the navy pill
- * button links to /signup. The focus ring is navy, because teal is invisible
+ * button links to the request target (see useRequestTarget). The focus ring is navy, because teal is invisible
  * on teal.
  */
 function CtaBand() {
+  const requestTo = useRequestTarget();
   return (
     <section
       aria-labelledby="cta-heading"
@@ -23,7 +25,7 @@ function CtaBand() {
         </h2>
         <div className="flex flex-col items-start gap-6 md:col-span-5">
           <p className="max-w-[28ch] text-lead">It takes a minute. A person reads every brief.</p>
-          <Button to="/signup" arrow>
+          <Button to={requestTo} arrow>
             Request a service
           </Button>
         </div>

@@ -5,7 +5,7 @@ import ServiceVisual from "./ServiceVisual";
 
 /*
  * Services bento on paper: five white rounded cards, each a link to
- * /services with a drawing, the service name (h3) and one line. Web
+ * its section on /services with a drawing, the service name (h3) and one line. Web
  * Development is the tall card (two rows) and adds sample key/value rows
  * (copy to confirm). Hover lifts the card with --shadow-lift; no resting
  * shadow. Three columns from lg, two from md, one on phones.
@@ -70,7 +70,7 @@ function ServiceBento() {
         {cards.map((c, i) => (
           <Reveal as="li" key={c.key} delay={i * 60} className={`flex ${c.place}`}>
             <Link
-              to="/services"
+              to={`/services#svc-${c.key}`}
               className="flex w-full flex-col rounded-card bg-card p-5 transition-[box-shadow,transform] duration-base ease-out hover:shadow-lift focus-visible:shadow-lift motion-safe:hover:-translate-y-0.5 md:p-6"
             >
               {c.tall ? (

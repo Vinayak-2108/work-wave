@@ -9,7 +9,7 @@ import { ArrowIcon, SpinnerIcon } from "./icons";
  * `onTeal` is for teal fields: same flipped colours with a navy (--on-teal)
  * ring, because a teal ring is invisible on teal. Secondary and text
  * variants switch to navy labels there (paper on teal is 1.6:1).
- * Heights: 48px on marketing (.site), 36px in the app (44px on phones, from
+ * Heights: 48px on marketing and in the header (.site), 36px in the app (44px on phones, from
  * --control-height). Renders a router <Link> when given `to`.
  * `loading`: label stays, a spinner replaces the arrow, aria-busy is set and
  * clicks are ignored. `disabled` needs `disabledReason`, which is shown in
@@ -18,7 +18,7 @@ import { ArrowIcon, SpinnerIcon } from "./icons";
 const base =
   "inline-flex items-center justify-center gap-2 rounded-pill px-6 " +
   "font-text text-body font-semibold leading-none whitespace-nowrap select-none " +
-  "h-12 [.app_&]:h-control-height [.app_&]:px-4 [.app_&]:text-[14px] " +
+  "h-12 [.app_&:not(.site_*)]:h-control-height [.app_&:not(.site_*)]:px-4 [.app_&:not(.site_*)]:text-[14px] " +
   "transition-[background-color,color,border-color,transform] duration-fast ease-out " +
   "active:translate-y-px";
 

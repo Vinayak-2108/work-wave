@@ -5,19 +5,34 @@ import { Button } from "../components/ui";
 import CtaBand from "../components/site/CtaBand";
 import Reveal from "../components/site/Reveal";
 import ServiceVisual from "../components/site/ServiceVisual";
+import { useRequestTarget } from "../utils/useRequestTarget";
+import { useAuth } from "../utils/useAuth";
+import { SLIP_KEY } from "../components/site/JobSlip";
 
 const h2 = "font-display text-head font-extrabold uppercase leading-[0.95] tracking-[-0.005em]";
 
 /* Heading, description and the one link; `onDark` for navy fields. */
 function Text({ id, title, children, onDark = false, className = "" }) {
+  const requestTo = useRequestTarget();
+  const { role } = useAuth();
+  // A signed-in client's click saves the same draft the job slip writes, so
+  // the request form preselects this service. Budget stays empty.
+  const saveDraft = () => {
+    if (role !== "user") return;
+    try {
+      window.sessionStorage.setItem(SLIP_KEY, JSON.stringify({ service: title, budget: "" }));
+    } catch (e) {
+      /* storage unavailable: the form just opens empty */
+    }
+  };
   return (
     <Reveal className={className}>
-      <h2 id={id} className={h2}>
+      <h2 id={id} className={`${h2} scroll-mt-20 md:scroll-mt-24`}>
         {title}
       </h2>
       <p className={`mt-6 max-w-[34ch] text-lead ${onDark ? "text-on-navy-muted" : ""}`}>{children}</p>
       <div className="mt-6">
-        <Button to="/signup" variant="text" onDark={onDark} arrow className="max-md:-ml-2">
+        <Button to={requestTo} onClick={saveDraft} variant="text" onDark={onDark} arrow className="max-md:-ml-2">
           Request this service
         </Button>
       </div>
