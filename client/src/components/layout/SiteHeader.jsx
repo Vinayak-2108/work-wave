@@ -33,7 +33,11 @@ function SiteHeader() {
   const menuButton = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
-  const { isAuthed, dashboardPath, logout } = useAuth();
+  const { role, isAuthed, dashboardPath, logout } = useAuth();
+  // Dashboard stays active on every route of the role's app area.
+  const dashboardRoutes =
+    role === "admin" ? ["/admindashboard"] : ["/userdashboard", "/requestservice"];
+  const dashboardActive = dashboardRoutes.includes(location.pathname);
 
   const close = useCallback(() => setOpen(false), []);
   const toggle = useCallback(() => setOpen((v) => !v), []);
@@ -107,7 +111,12 @@ function SiteHeader() {
             {isAuthed ? (
               <>
                 <li>
-                  <NavLink to={dashboardPath} className={navLinkClass} onClick={close}>
+                  <NavLink
+                    to={dashboardPath}
+                    className={() => navLinkClass({ isActive: dashboardActive })}
+                    aria-current={dashboardActive ? "page" : undefined}
+                    onClick={close}
+                  >
                     Dashboard
                   </NavLink>
                 </li>
