@@ -57,9 +57,9 @@ function Group({ title, children }) {
 
 function ResultBar({ label, value }) {
   return (
-    <p className="mt-6 flex items-center justify-between gap-4 bg-navy px-4 py-3 text-body text-on-navy">
-      <span>{label}</span>
-      <span className="stamp text-right font-semibold">{value}</span>
+    <p className="mt-6 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 bg-navy px-4 py-3 text-body text-on-navy">
+      <span className="whitespace-nowrap">{label}</span>
+      <span className="stamp font-semibold">{value}</span>
     </p>
   );
 }
